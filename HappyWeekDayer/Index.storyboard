@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--主页-->
+        <!--欢乐周末-->
         <scene sceneID="xxY-Zi-Xvt">
             <objects>
                 <viewController id="BPV-AF-XMd" customClass="IndexViewController" sceneMemberID="viewController">
@@ -14,16 +14,29 @@
                         <viewControllerLayoutGuide type="bottom" id="MVj-Oh-Dpn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OEX-CO-siA">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JoP-ny-Nnh">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BPV-AF-XMd" id="mgw-iS-fkd"/>
+                                    <outlet property="delegate" destination="BPV-AF-XMd" id="H4k-W9-hwJ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.34236087009999999" green="0.66666666669999997" blue="0.24439868619999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="主页" id="81E-40-Sjj"/>
+                    <navigationItem key="navigationItem" title="欢乐周末" id="81E-40-Sjj"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="tableView" destination="JoP-ny-Nnh" id="7wo-dk-aGx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wri-fZ-5gU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="913" y="475"/>
+            <point key="canvasLocation" x="781" y="412"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2ig-w2-rZc">
@@ -31,7 +44,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bpy-tZ-vaO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c98-am-BGT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="c98-am-BGT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -42,7 +55,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8K-4f-bvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="420" y="490"/>
+            <point key="canvasLocation" x="284" y="412"/>
         </scene>
     </scenes>
 </document>

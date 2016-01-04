@@ -7,22 +7,40 @@
 //
 
 #import "IndexViewController.h"
+#import "IndexTableViewCell.h"
 
-@interface IndexViewController ()
+@interface IndexViewController ()<UITableViewDataSource,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
 @implementation IndexViewController
-
+#pragma mark    //559 203
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    self.tableView.rowHeight = 203;
+    /**
+     注册CELL
+     */
+    [self.tableView registerNib:[UINib nibWithNibName:@"IndexTableViewCell"bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 20;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    IndexTableViewCell *indexCell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    return indexCell;
+    
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
 #pragma mark - Navigation
@@ -35,3 +53,31 @@
 */
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

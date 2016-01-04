@@ -1,0 +1,288 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7ADD427D1C3A1C09007A577C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD427C1C3A1C09007A577C /* main.m */; };
+		7ADD42801C3A1C0A007A577C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD427F1C3A1C0A007A577C /* AppDelegate.m */; };
+		7ADD42821C3A1C0A007A577C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD42811C3A1C0A007A577C /* Assets.xcassets */; };
+		7ADD42851C3A1C0A007A577C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD42831C3A1C0A007A577C /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7ADD42781C3A1C09007A577C /* HappyWeekDayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyWeekDayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ADD427C1C3A1C09007A577C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7ADD427E1C3A1C0A007A577C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7ADD427F1C3A1C0A007A577C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7ADD42811C3A1C0A007A577C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7ADD42841C3A1C0A007A577C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7ADD42861C3A1C0A007A577C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ADD42751C3A1C09007A577C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7ADD426F1C3A1C09007A577C = {
+			isa = PBXGroup;
+			children = (
+				7ADD427A1C3A1C09007A577C /* HappyWeekDayer */,
+				7ADD42791C3A1C09007A577C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ADD42791C3A1C09007A577C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7ADD42781C3A1C09007A577C /* HappyWeekDayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7ADD427A1C3A1C09007A577C /* HappyWeekDayer */ = {
+			isa = PBXGroup;
+			children = (
+				7ADD427E1C3A1C0A007A577C /* AppDelegate.h */,
+				7ADD427F1C3A1C0A007A577C /* AppDelegate.m */,
+				7ADD42811C3A1C0A007A577C /* Assets.xcassets */,
+				7ADD42831C3A1C0A007A577C /* LaunchScreen.storyboard */,
+				7ADD42861C3A1C0A007A577C /* Info.plist */,
+				7ADD427B1C3A1C09007A577C /* Supporting Files */,
+			);
+			path = HappyWeekDayer;
+			sourceTree = "<group>";
+		};
+		7ADD427B1C3A1C09007A577C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7ADD427C1C3A1C09007A577C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7ADD42771C3A1C09007A577C /* HappyWeekDayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ADD42891C3A1C0A007A577C /* Build configuration list for PBXNativeTarget "HappyWeekDayer" */;
+			buildPhases = (
+				7ADD42741C3A1C09007A577C /* Sources */,
+				7ADD42751C3A1C09007A577C /* Frameworks */,
+				7ADD42761C3A1C09007A577C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HappyWeekDayer;
+			productName = HappyWeekDayer;
+			productReference = 7ADD42781C3A1C09007A577C /* HappyWeekDayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7ADD42701C3A1C09007A577C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "李志鹏";
+				TargetAttributes = {
+					7ADD42771C3A1C09007A577C = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JJL237F75C;
+					};
+				};
+			};
+			buildConfigurationList = 7ADD42731C3A1C09007A577C /* Build configuration list for PBXProject "HappyWeekDayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7ADD426F1C3A1C09007A577C;
+			productRefGroup = 7ADD42791C3A1C09007A577C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7ADD42771C3A1C09007A577C /* HappyWeekDayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7ADD42761C3A1C09007A577C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ADD42821C3A1C0A007A577C /* Assets.xcassets in Resources */,
+				7ADD42851C3A1C0A007A577C /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7ADD42741C3A1C09007A577C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ADD42801C3A1C0A007A577C /* AppDelegate.m in Sources */,
+				7ADD427D1C3A1C09007A577C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		7ADD42831C3A1C0A007A577C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7ADD42841C3A1C0A007A577C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7ADD42871C3A1C0A007A577C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7ADD42881C3A1C0A007A577C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7ADD428A1C3A1C0A007A577C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HappyWeekDayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Burapa.HappyWeekDayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7ADD428B1C3A1C0A007A577C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = HappyWeekDayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Burapa.HappyWeekDayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7ADD42731C3A1C09007A577C /* Build configuration list for PBXProject "HappyWeekDayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ADD42871C3A1C0A007A577C /* Debug */,
+				7ADD42881C3A1C0A007A577C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ADD42891C3A1C0A007A577C /* Build configuration list for PBXNativeTarget "HappyWeekDayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ADD428A1C3A1C0A007A577C /* Debug */,
+				7ADD428B1C3A1C0A007A577C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7ADD42701C3A1C09007A577C /* Project object */;
+}

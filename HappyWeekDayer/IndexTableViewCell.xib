@@ -42,7 +42,7 @@
                 <outlet property="activityNameLabel" destination="qwn-DJ-d2t" id="i6T-5r-HsQ"/>
                 <outlet property="activityPriceLabel" destination="jp4-Gz-ila" id="Oqc-0k-EQ8"/>
             </connections>
-            <point key="canvasLocation" x="457.5" y="348.5"/>
+            <point key="canvasLocation" x="581.5" y="354.5"/>
         </tableViewCell>
     </objects>
 </document>

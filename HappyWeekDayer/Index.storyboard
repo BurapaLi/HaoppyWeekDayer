@@ -14,12 +14,13 @@
                         <viewControllerLayoutGuide type="bottom" id="MVj-Oh-Dpn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OEX-CO-siA">
-                        <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JoP-ny-Nnh">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.2923767941" blue="0.46831522749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="1" green="0.37507914170000001" blue="0.055283507939999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="BPV-AF-XMd" id="mgw-iS-fkd"/>
                                     <outlet property="delegate" destination="BPV-AF-XMd" id="H4k-W9-hwJ"/>
@@ -44,9 +45,12 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bpy-tZ-vaO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="c98-am-BGT">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c98-am-BGT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.098039215690000001" green="0.72156862749999995" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.17705704180000001" green="0.23530311509999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.098039215690000001" green="0.72156862749999995" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

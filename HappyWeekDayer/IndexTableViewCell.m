@@ -7,6 +7,7 @@
 //
 
 #import "IndexTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 @interface IndexTableViewCell()
 
 
@@ -15,6 +16,14 @@
 
 
 @implementation IndexTableViewCell
+
+- (void)setModel:(IndexModel *)model{
+    [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:model.image_big] placeholderImage:nil];
+    
+    self.activityNameLabel.text = model.title;
+    self.activityPriceLabel.text =model.price;
+    
+}
 
 - (void)awakeFromNib {
     // Initialization code

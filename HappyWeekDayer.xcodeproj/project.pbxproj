@@ -104,7 +104,8 @@
 		7ADD43461C3A6E95007A577C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD43451C3A6E94007A577C /* icon.png */; };
 		7ADD434D1C3A7682007A577C /* IndexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD434B1C3A7682007A577C /* IndexTableViewCell.m */; };
 		7ADD434E1C3A7682007A577C /* IndexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD434C1C3A7682007A577C /* IndexTableViewCell.xib */; };
-		7AFE8F0C1C3BA01F00F331AE /* File.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7AFE8F0B1C3BA01F00F331AE /* File.plist */; };
+		7AFE8F121C3BA36300F331AE /* IndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFE8F111C3BA36300F331AE /* IndexModel.m */; };
+		7AFE8F141C3BA52F00F331AE /* 网络.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFE8F131C3BA52F00F331AE /* 网络.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -213,7 +214,9 @@
 		7ADD434A1C3A7682007A577C /* IndexTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexTableViewCell.h; sourceTree = "<group>"; };
 		7ADD434B1C3A7682007A577C /* IndexTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexTableViewCell.m; sourceTree = "<group>"; };
 		7ADD434C1C3A7682007A577C /* IndexTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndexTableViewCell.xib; sourceTree = "<group>"; };
-		7AFE8F0B1C3BA01F00F331AE /* File.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = File.plist; sourceTree = "<group>"; };
+		7AFE8F101C3BA36300F331AE /* IndexModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexModel.h; sourceTree = "<group>"; };
+		7AFE8F111C3BA36300F331AE /* IndexModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexModel.m; sourceTree = "<group>"; };
+		7AFE8F131C3BA52F00F331AE /* 网络.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "网络.m"; sourceTree = "<group>"; };
 		DE1959563A88926DFA6BA7EC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -261,7 +264,6 @@
 				7ADD43451C3A6E94007A577C /* icon.png */,
 				7ADD427E1C3A1C0A007A577C /* AppDelegate.h */,
 				7ADD427F1C3A1C0A007A577C /* AppDelegate.m */,
-				7AFE8F0B1C3BA01F00F331AE /* File.plist */,
 				7ADD42CC1C3A6429007A577C /* drawable-xhdpi */,
 				7ADD42BE1C3A2772007A577C /* 09-chat2.png */,
 				7ADD42BF1C3A2772007A577C /* 38-airplane.png */,
@@ -383,6 +385,9 @@
 		7ADD43471C3A7016007A577C /* index */ = {
 			isa = PBXGroup;
 			children = (
+				7AFE8F131C3BA52F00F331AE /* 网络.m */,
+				7AFE8F101C3BA36300F331AE /* IndexModel.h */,
+				7AFE8F111C3BA36300F331AE /* IndexModel.m */,
 				7ADD42B51C3A2512007A577C /* IndexViewController.h */,
 				7ADD42B61C3A2512007A577C /* IndexViewController.m */,
 				7ADD42C61C3A5F21007A577C /* Index.storyboard */,
@@ -499,7 +504,6 @@
 				7ADD431A1C3A6429007A577C /* ft_person_selected_ic.png in Resources */,
 				7ADD43291C3A6429007A577C /* ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused.png in Resources */,
 				7ADD43171C3A6429007A577C /* ft_home_normal_ic.png in Resources */,
-				7AFE8F0C1C3BA01F00F331AE /* File.plist in Resources */,
 				7ADD43371C3A6429007A577C /* icon_user.png in Resources */,
 				7ADD430C1C3A6429007A577C /* btn_nearby.png in Resources */,
 				7ADD43301C3A6429007A577C /* icon_ac.png in Resources */,
@@ -636,6 +640,8 @@
 				7ADD42801C3A1C0A007A577C /* AppDelegate.m in Sources */,
 				7ADD427D1C3A1C09007A577C /* main.m in Sources */,
 				7ADD42B71C3A2512007A577C /* IndexViewController.m in Sources */,
+				7AFE8F141C3BA52F00F331AE /* 网络.m in Sources */,
+				7AFE8F121C3BA36300F331AE /* IndexModel.m in Sources */,
 				7ADD42BA1C3A2521007A577C /* FindViewController.m in Sources */,
 				7ADD42BD1C3A253E007A577C /* OwerViewController.m in Sources */,
 			);

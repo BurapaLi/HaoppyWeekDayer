@@ -41,14 +41,14 @@ typedef enum {
 /**
  维度
  */
-@property(nonatomic, assign) CGFloat lng;
-@property (nonatomic, copy) NSString *address;
-@property (nonatomic, copy) NSString *counts;
-@property (nonatomic, copy) NSString *startTime;
-@property (nonatomic, copy) NSString *endTime;
-@property (nonatomic, copy) NSString *activityId;
-@property (nonatomic, copy) NSString *type;
-@property (nonatomic, copy) NSString *activityDescription;
+@property (nonatomic, assign) CGFloat  lng;
+@property (nonatomic, copy  ) NSString *address;
+@property (nonatomic, copy  ) NSString *counts;
+@property (nonatomic, copy  ) NSString *startTime;
+@property (nonatomic, copy  ) NSString *endTime;
+@property (nonatomic, copy  ) NSString *activityId;
+@property (nonatomic, copy  ) NSString *type;
+@property (nonatomic, copy  ) NSString *activityDescription;
 
 //+ (instancetype)indexModelWithDictory:(NSDictionary *)dict;
 

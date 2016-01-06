@@ -21,19 +21,19 @@
     if (self) {
         self.type = dic[@"type"];
         if ([self.type integerValue] == RecommendTypeActivity) {
-            self.price = dic[@"price"];
-            self.lat = [dic[@"lat"] floatValue];
-            self.lng = [dic[@"lng"] floatValue];
-            self.address = dic[@"address"];
-            self.counts = dic[@"counts"];
+            self.address   = dic[@"address"];
+            self.counts    = dic[@"counts"];
+            self.endTime   = dic[@"endTime"];
+            self.lat       = [dic[@"lat"] floatValue];
+            self.lng       = [dic[@"lng"] floatValue];
+            self.price     = dic[@"price"];
             self.startTime = dic[@"startTime"];
-            self.endTime = dic[@"endTime"];
         }else{
             self.activityDescription = dic[@"description"];
         }
-        self.image_big = dic[@"image_big"];
-        self.title = dic[@"title"];
         self.activityId = dic[@"id"];
+        self.image_big  = dic[@"image_big"];
+        self.title      = dic[@"title"];
     }
     return self;
 }

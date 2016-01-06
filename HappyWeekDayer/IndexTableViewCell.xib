@@ -17,10 +17,6 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFT-Q3-6yV">
                         <rect key="frame" x="0.0" y="0.0" width="417" height="177"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkd-uO-6v2">
-                        <rect key="frame" x="347" y="175" width="55" height="30"/>
-                        <state key="normal" title="Button"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="llllllllllllllsdfklssfjskfj" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qwn-DJ-d2t">
                         <rect key="frame" x="0.0" y="147" width="417" height="30"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -31,9 +27,16 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥99999999999999" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jp4-Gz-ila">
                         <rect key="frame" x="0.0" y="175" width="289" height="27"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkd-uO-6v2">
+                        <rect key="frame" x="342" y="180" width="75" height="22"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title=" 668km" image="pos">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -42,7 +45,10 @@
                 <outlet property="activityNameLabel" destination="qwn-DJ-d2t" id="i6T-5r-HsQ"/>
                 <outlet property="activityPriceLabel" destination="jp4-Gz-ila" id="Oqc-0k-EQ8"/>
             </connections>
-            <point key="canvasLocation" x="581.5" y="354.5"/>
+            <point key="canvasLocation" x="751.5" y="362.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="pos" width="12" height="15"/>
+    </resources>
 </document>

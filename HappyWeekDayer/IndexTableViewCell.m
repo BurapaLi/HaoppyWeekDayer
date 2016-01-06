@@ -8,9 +8,8 @@
 
 #import "IndexTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+
 @interface IndexTableViewCell()
-
-
 
 @end
 
@@ -19,11 +18,16 @@
 
 - (void)setModel:(IndexModel *)model{
     [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:model.image_big] placeholderImage:nil];
-    
     self.activityNameLabel.text = model.title;
     self.activityPriceLabel.text =model.price;
+    if ([model.type integerValue] != RecommendTypeActivity) {
+        self.activityDistanceBtn.hidden = YES;
+    }else{
+        self.activityDistanceBtn.hidden = NO;
+    }
     
 }
+
 
 - (void)awakeFromNib {
     // Initialization code

@@ -17,15 +17,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JoP-ny-Nnh">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BPV-AF-XMd" id="mgw-iS-fkd"/>
-                                    <outlet property="delegate" destination="BPV-AF-XMd" id="H4k-W9-hwJ"/>
-                                </connections>
-                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qn2-xm-EwS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0dv-wE-2e5">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mVH-N8-qgI">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uaK-Yb-uz8">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                                        <subviews>
+                                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JoP-ny-Nnh">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <connections>
+                                                                    <outlet property="dataSource" destination="BPV-AF-XMd" id="mgw-iS-fkd"/>
+                                                                    <outlet property="delegate" destination="BPV-AF-XMd" id="H4k-W9-hwJ"/>
+                                                                </connections>
+                                                            </tableView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                     </view>
                     <navigationItem key="navigationItem" title="欢乐周末" id="81E-40-Sjj"/>
@@ -36,7 +56,136 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wri-fZ-5gU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="566" y="355"/>
+            <point key="canvasLocation" x="403" y="331"/>
+        </scene>
+        <!--Acitivy View Controller-->
+        <scene sceneID="9UD-xv-pcD">
+            <objects>
+                <viewController storyboardIdentifier="123" id="uvd-jy-vXy" customClass="AcitivyViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VBa-kg-B0i"/>
+                        <viewControllerLayoutGuide type="bottom" id="PwD-wO-vBJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6wO-On-SZE" customClass="ActivityView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="trc-hB-QL5">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1r-Jd-xEf">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="186"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活动标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Gf-dn-gxj">
+                                        <rect key="frame" x="20" y="188" width="394" height="44"/>
+                                        <color key="backgroundColor" red="0.69994909709999997" green="1" blue="0.1272039076" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="bRq-Nx-g5v">
+                                        <rect key="frame" x="0.0" y="281" width="414" height="1"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="XoR-qP-7fb">
+                                        <rect key="frame" x="0.0" y="325" width="414" height="1"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="参考价格说明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhT-wo-rHn">
+                                        <rect key="frame" x="20" y="285" width="291" height="37"/>
+                                        <color key="backgroundColor" red="1" green="0.36194446520000001" blue="0.2337961932" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ac_location_normal" translatesAutoresizingMaskIntoConstraints="NO" id="3Ab-8B-rO9">
+                                        <rect key="frame" x="20" y="335" width="28" height="31"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="多少人喜欢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2j-Kl-BeD">
+                                        <rect key="frame" x="60" y="330" width="251" height="34"/>
+                                        <color key="backgroundColor" red="0.34236087009999999" green="0.66666666669999997" blue="0.24439868619999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="多少人喜欢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpU-AM-eKu">
+                                        <rect key="frame" x="60" y="378" width="147" height="34"/>
+                                        <color key="backgroundColor" red="0.86374749340000001" green="0.47527878579999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="list_make_out" translatesAutoresizingMaskIntoConstraints="NO" id="8HP-cQ-6C9">
+                                        <rect key="frame" x="384" y="382" width="17" height="25"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="Xz2-Mk-G3T">
+                                        <rect key="frame" x="20" y="374" width="28" height="37"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="Bj3-2R-ze3">
+                                        <rect key="frame" x="0.0" y="373" width="414" height="1"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="tvh-6U-Onq">
+                                        <rect key="frame" x="0.0" y="415" width="414" height="9"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="多少人喜欢" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwl-K9-J71">
+                                        <rect key="frame" x="310" y="234" width="104" height="44"/>
+                                        <color key="backgroundColor" red="1" green="0.37507914170000001" blue="0.055283507939999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ac_details_img" translatesAutoresizingMaskIntoConstraints="NO" id="6Oc-pg-RRw">
+                                        <rect key="frame" x="20" y="425" width="28" height="34"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活动详情" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zca-Wi-ngt">
+                                        <rect key="frame" x="60" y="427" width="147" height="35"/>
+                                        <color key="backgroundColor" red="0.66666666669999997" green="0.2923767941" blue="0.46831522749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="grayLine" translatesAutoresizingMaskIntoConstraints="NO" id="zSW-Fw-RVc">
+                                        <rect key="frame" x="0.0" y="468" width="414" height="1"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jLt-wX-Plf">
+                                        <rect key="frame" x="11" y="331" width="37" height="31"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="活动起止时间" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9E-4V-g5b">
+                                        <rect key="frame" x="20" y="234" width="291" height="44"/>
+                                        <color key="backgroundColor" red="0.17705704180000001" green="0.23530311509999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxn-9v-hox">
+                                        <rect key="frame" x="13" y="379" width="42" height="32"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="list_make_out" translatesAutoresizingMaskIntoConstraints="NO" id="gX5-Od-cO0">
+                                        <rect key="frame" x="386" y="338" width="17" height="25"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="IndexScrollView" destination="trc-hB-QL5" id="xXR-Lb-XEb"/>
+                            <outlet property="activityPriceLabel" destination="HhT-wo-rHn" id="1hP-TN-NSU"/>
+                            <outlet property="activityTimeLabel" destination="Q9E-4V-g5b" id="MKe-Zp-G6A"/>
+                            <outlet property="activityTypeLabel" destination="9Gf-dn-gxj" id="doN-S6-13t"/>
+                            <outlet property="addressLabel" destination="V2j-Kl-BeD" id="ewr-1e-GTd"/>
+                            <outlet property="favouriteLabel" destination="cwl-K9-J71" id="Ebk-l2-zFw"/>
+                            <outlet property="imageView" destination="O1r-Jd-xEf" id="Tqr-HA-6su"/>
+                            <outlet property="makeCallButton" destination="bxn-9v-hox" id="Jkw-8a-O9y"/>
+                            <outlet property="mapButton" destination="jLt-wX-Plf" id="osS-lc-5Gu"/>
+                            <outlet property="phoneLabel" destination="qpU-AM-eKu" id="Klt-vn-Hki"/>
+                        </connections>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="connectView" destination="6wO-On-SZE" id="woo-ag-EM5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3a-pn-xYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="324"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2ig-w2-rZc">
@@ -56,7 +205,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n8K-4f-bvJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128" y="345"/>
+            <point key="canvasLocation" x="-74" y="340"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ac_details_img" width="40" height="40"/>
+        <image name="ac_location_normal" width="50" height="60"/>
+        <image name="grayLine" width="10" height="1"/>
+        <image name="list_make_out" width="16" height="30"/>
+        <image name="phone" width="50" height="50"/>
+    </resources>
 </document>

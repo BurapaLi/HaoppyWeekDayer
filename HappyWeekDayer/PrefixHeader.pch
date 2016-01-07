@@ -22,6 +22,9 @@
  */
 #import "Header.h"
 #import "UIViewController+Common.h"
+#import "UIView+EstensionView.h"
+#import <UIKit/UIKit.h>
+
 
 #ifdef DEBUG
 #   define fSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);

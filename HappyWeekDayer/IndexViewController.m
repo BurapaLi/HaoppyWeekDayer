@@ -19,7 +19,6 @@
 #import "goodViewController.h"
 #import "hotViewController.h"
 
-
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 /**
@@ -150,7 +149,10 @@
     //从数组中的字典里取出type类型
     NSString *type = self.adArray[adButton.tag - 100][@"type"];
     if ([type integerValue] == 1) {
-        AcitivyViewController *activityVC = [[AcitivyViewController alloc] init];
+//        AcitivyViewController *activityVC = [[AcitivyViewController alloc] init];
+        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
+        AcitivyViewController *activityVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"123"];
+        
         activityVC.activityId = self.adArray[adButton.tag - 100][@"id"];
         [self.navigationController pushViewController:activityVC animated:YES];
     } else {
@@ -174,13 +176,11 @@
     [self.scrollView setContentOffset:offset animated:YES];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGPoint offSet = self.scrollView.contentOffset;
-    CGFloat width = self.scrollView.frame.size.width;
-    self.pageControl.currentPage = offSet.x / width;
+    
+    self.pageControl.currentPage = self.scrollView.contentOffset.x / kWidth;
 }
 //当用户拖拽scrollView的时候，移除定时器
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    //invalidate和release的区别,invalidate在arc和mrc下都可以使用
     [self.timer invalidate], self.timer = nil;
 }
 //当用户停止拖拽时，添加定时器
@@ -189,7 +189,6 @@
 }
 //切换视图时，移除定时器
 - (void)viewWillDisappear:(BOOL)animated{
-    //invalidate与release的区别,invalidate在arc和mrc下都可以使用
     [self.timer invalidate], self.timer = nil;
 }
 

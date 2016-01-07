@@ -9,8 +9,13 @@
 #import "AcitivyViewController.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "ActivityView.h"
 
 @interface AcitivyViewController ()
+{
+    NSString *number;
+}
+@property (strong, nonatomic) IBOutlet ActivityView *connectView;
 
 @end
 
@@ -20,18 +25,42 @@
     [super viewDidLoad];
     self.navigationItem.title = @"活动详情";
     [self showBackButton];
+    [self getModel];
+    
+    [self gogoo];
+}
+- (void)gogoo{
+    //地图
+    [self.connectView.mapButton addTarget:self action:@selector(mapButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    //打电话
+    [self.connectView.makeCallButton addTarget:self action:@selector(makeCallButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)mapButtonAction:(UIButton *)button{
+    //程序外打电话，不返回
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
+    
+    //程序内打电话，
+     UIWebView *cell = [[UIWebView alloc] init];
+     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
+    [cell loadRequest:request];
+    [self.view addSubview:cell];
+    
+}
+- (void)makeCallButtonAction:(UIButton *)button{
+    
 }
 
 #pragma mark   ------ Custom Method
 - (void)getModel{
-    NSLog(@"!!!!!!@!#@#!@$#@#");
+    
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [sessionManager GET:[NSString stringWithFormat:@"%@&id=%@", kActicityDetail, self.activityId] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        NSLog(@"%@", downloadProgress);
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
+        [self make:responseObject];
+        
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -39,15 +68,19 @@
     }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark    //解析数据
+- (void)make:(NSDictionary *)responseObject{
+    NSDictionary *dic = responseObject;
+    NSString *status = dic[@"status"];
+    NSInteger code = [dic[@"code"] integerValue];
+    if ([status isEqualToString:@"success"] && code == 0) {
+        NSDictionary *successdic = dic[@"success"];
+        self.connectView.dataDic = successdic;
+        number = successdic[@"tel"];
+    }else{
+        
+    }
 }
-*/
 
 @end
 

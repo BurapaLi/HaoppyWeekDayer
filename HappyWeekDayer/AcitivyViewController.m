@@ -10,6 +10,7 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ActivityView.h"
+#import "AppDelegate.h"
 
 @interface AcitivyViewController ()
 {
@@ -20,12 +21,13 @@
 @end
 
 @implementation AcitivyViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"活动详情";
     [self showBackButton];
     [self getModel];
+    self.tabBarController.tabBar.hidden = YES;
+    
     
     [self gogoo];
 }
@@ -35,19 +37,20 @@
     //打电话
     [self.connectView.makeCallButton addTarget:self action:@selector(makeCallButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 }
+
 - (void)mapButtonAction:(UIButton *)button{
-    //程序外打电话，不返回
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
-    
-    //程序内打电话，
-     UIWebView *cell = [[UIWebView alloc] init];
-     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
-    [cell loadRequest:request];
-    [self.view addSubview:cell];
+   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://map.baidu.com"]];
     
 }
 - (void)makeCallButtonAction:(UIButton *)button{
+    //程序外打电话，不返回
+    //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
     
+    //程序内打电话，
+    UIWebView *cell = [[UIWebView alloc] init];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]]];
+    [cell loadRequest:request];
+    [self.view addSubview:cell];
 }
 
 #pragma mark   ------ Custom Method

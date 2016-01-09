@@ -48,6 +48,12 @@
 @implementation IndexViewController
 #pragma mark    //559 203
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
+    
+    
+}
 - (NSMutableArray *)listArray
 {
     if (!_listArray) {
@@ -149,20 +155,22 @@
     //从数组中的字典里取出type类型
     NSString *type = self.adArray[adButton.tag - 100][@"type"];
     if ([type integerValue] == 1) {
-//        AcitivyViewController *activityVC = [[AcitivyViewController alloc] init];
+        
         UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
         AcitivyViewController *activityVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"123"];
         
         activityVC.activityId = self.adArray[adButton.tag - 100][@"id"];
         [self.navigationController pushViewController:activityVC animated:YES];
     } else {
-        ThemeViewController *hotVC = [[ThemeViewController alloc] init];
-        [self.navigationController pushViewController:hotVC animated:YES];
+        ThemeViewController *themeVC = [[ThemeViewController alloc] init];
+//        themeVC.hidesBottomBarWhenPushed = YES;
+        themeVC.themeid = self.adArray[adButton.tag - 100][@"id"];
+        [self.navigationController pushViewController:themeVC animated:YES];
     }
 }
 
 - (void)timerTo{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(scrollViewAction) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(scrollViewAction) userInfo:nil repeats:YES];
 }
 - (void)scrollViewAction{
 //    fSLog(@"%lu",self.adArray.count);

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface goodViewController : UIViewController
+@property (nonatomic, copy) NSString *themeid;
 
 @end

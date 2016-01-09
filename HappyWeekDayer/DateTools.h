@@ -13,9 +13,12 @@
  */
 + (NSString *)getDateFromString:(NSString *)timestamp;
 /**
- 
+ 获得文字高度
  */
 + (CGFloat)getTextHeightWithBigestSize:(NSString *)text bigestSize:(CGSize)bigSize textFont:(CGFloat)font;
+
++ (NSDate *)getSystemNowDate;
+
 @end
 
 

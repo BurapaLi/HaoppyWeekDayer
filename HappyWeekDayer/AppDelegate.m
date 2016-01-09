@@ -50,7 +50,7 @@
 //    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:tabBarVc];
     
     //UITabBarController
-    UITabBarController *tabBarVC = [[UITabBarController alloc] init];
+    self.tabBarVC = [[UITabBarController alloc] init];
     //创建被tabBarVC管理的视图控制器
     //主页
     //欢乐周末
@@ -78,8 +78,8 @@
     mineNav.tabBarItem.selectedImage = [[UIImage imageNamed:@"ft_person_selected_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //添加被管理的视图控制器
-    tabBarVC.viewControllers = @[mainNav, discoverNav, mineNav];
-    self.window.rootViewController = tabBarVC;
+    self.tabBarVC.viewControllers = @[mainNav, discoverNav, mineNav];
+    self.window.rootViewController = self.tabBarVC;
     
     
     

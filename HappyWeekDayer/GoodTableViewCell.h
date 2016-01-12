@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GoodModel.h"
 
 @interface GoodTableViewCell : UITableViewCell
+//@property (nonatomic, strong) NSDictionary *dataDic;
+@property (nonatomic, strong) GoodModel *goodModel;
 
 @end

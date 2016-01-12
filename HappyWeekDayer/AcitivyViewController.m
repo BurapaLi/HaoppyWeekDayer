@@ -7,7 +7,6 @@
 //
 
 #import "AcitivyViewController.h"
-#import <AFNetworking/AFHTTPSessionManager.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "ActivityView.h"
 #import "AppDelegate.h"

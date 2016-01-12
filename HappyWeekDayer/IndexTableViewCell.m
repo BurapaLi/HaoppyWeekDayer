@@ -7,7 +7,7 @@
 //
 
 #import "IndexTableViewCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
+
 
 @interface IndexTableViewCell()
 

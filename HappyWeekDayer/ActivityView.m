@@ -7,8 +7,6 @@
 //
 
 #import "ActivityView.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-#import "DateTools.h"
 
 @interface ActivityView()
 {

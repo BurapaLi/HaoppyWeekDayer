@@ -7,8 +7,6 @@
 //
 
 #import "ThemeView.h"
-#import "DateTools.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ThemeView()
 {

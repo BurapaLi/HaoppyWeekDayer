@@ -9,8 +9,6 @@
 #import "IndexViewController.h"
 #import "IndexTableViewCell.h"
 #import "IndexModel.h"
-#import <AFNetworking/AFHTTPSessionManager.h>
-#import <SDWebImage/UIImageView+WebCache.h>
 #import "SeletCityViewController.h"
 #import "SearchViewController.h"
 #import "AcitivyViewController.h"

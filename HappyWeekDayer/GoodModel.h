@@ -20,5 +20,6 @@
 @property (nonatomic, copy) NSString *price;
 @property (nonatomic, copy) NSString *startTime;
 @property (nonatomic, copy) NSString *title;
+- (instancetype)initWithDicticionary:(NSDictionary *)dict;
 
 @end

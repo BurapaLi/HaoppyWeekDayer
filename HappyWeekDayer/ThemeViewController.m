@@ -19,6 +19,7 @@
 @implementation ThemeViewController
 - (void)loadView{
     [super loadView];
+    self.navigationItem.title = @"活动专题";
     self.themeView = [[ThemeView alloc] initWithFrame:self.view.frame];
     self.view = self.themeView;
     [self getModel];

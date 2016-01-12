@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ClassFiyViewController : UIViewController
-@property (nonatomic, copy) NSString *themeid;
+@property (nonatomic, assign) ClassifyType classifyType;
+
 
 @end

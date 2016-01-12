@@ -7,11 +7,9 @@
 //
 
 #import "goodViewController.h"
-#import <AFNetworking/AFHTTPSessionManager.h>
-#import <MBProgressHUD/MBProgressHUD.h>
-#import "PullingRefreshTableView.h"
 #import "GoodTableViewCell.h"
-#import "DateTools.h"
+#import "GoodModel.h"
+#import "AcitivyViewController.h"
 
 @interface goodViewController ()<UITableViewDataSource,UITableViewDelegate,PullingRefreshTableViewDelegate>
 {
@@ -19,12 +17,46 @@
 }
 @property (nonatomic, strong) PullingRefreshTableView *tableView;
 @property (nonatomic, assign) BOOL refreshing;
+@property (nonatomic, strong) GoodTableViewCell *goodTableViewCell;
+@property (nonatomic, strong) NSMutableArray *acArray;
 
 @end
 
 @implementation goodViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"精选活动";
+    self.tabBarController.tabBar.hidden = YES;
+    
+    [self.view addSubview:self.tableView];
+    [self showBackButton];
+    self.tableView.tableFooterView = [[UITableView alloc] init];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView launchRefreshing];
+}
+- (void)loadData{
+    
+    [self getModel];
+    
+    [self.tableView tableViewDidFinishedLoading];
+    self.tableView.reachedTheEnd = NO;
+    
+    self.tableView.rowHeight = 90;
+    
+}
+- (NSMutableArray *)acArray
+{
+    if (!_acArray) {
+        self.acArray = [[NSMutableArray alloc] init];
+    }
+    return _acArray;
+}
+
 //tableView下拉刷新开始的时候调用
 - (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
+    
     self.refreshing = YES;
     _pagecount = 1;
     [self performSelector:@selector(loadData) withObject:nil afterDelay:1.0];
@@ -33,7 +65,7 @@
 }
 //上拉
 - (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView{
-//    self.refreshing = YES;
+    self.refreshing = NO;
     _pagecount += 1;
     [self performSelector:@selector(loadData) withObject:nil afterDelay:1.0];
     
@@ -44,16 +76,6 @@
     return [DateTools getSystemNowDate];
     
     }
-- (void)loadData{
-    
-    [self getModel];
-    
-    [self.tableView tableViewDidFinishedLoading];
-    self.tableView.reachedTheEnd = NO;
-    
-    [self.tableView launchRefreshing];
-    
-}
 //手指开始拖动方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.tableView tableViewDidScroll:scrollView];
@@ -73,17 +95,6 @@
     return _tableView;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"精选活动";
-    self.tabBarController.tabBar.hidden = YES;
-    
-    [self.view addSubview:self.tableView];
-    [self showBackButton];
-    self.tableView.tableFooterView = [[UITableView alloc] init];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-}
 
 - (void)getModel{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
@@ -101,40 +112,49 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         fSLog(@"%@", error);
     }];
-    
-    
 }
 - (void)make:(NSDictionary *)responseObject{
-        fSLog(@"%@",responseObject);
-    
-    
-//    NSDictionary *dic = responseObject;
-//    NSString *status = dic[@"status"];
-//    NSInteger code = [dic[@"code"] integerValue];
+//        fSLog(@"%@",responseObject);
+    NSDictionary *dic = responseObject;
+    NSString *status = dic[@"status"];
+    NSInteger code = [dic[@"code"] integerValue];
 //    if ([status isEqualToString:@"success"] && code == 0) {
-//        
-//        self.themeView.dataDic = dic[@"success"];
-//        
-//    }else{
-//        
+//        self.goodTableViewCell.dataDic = dic[@"success"];
 //    }
-    
-    
+    if (self.refreshing) {
+        //下拉刷新的时候需要移除数组中的元素
+        if (self.acArray.count > 0) {
+            [self.acArray removeAllObjects];
+        }
+    }
+    if ([status isEqualToString:@"success"] && code == 0) {
+        NSDictionary *successDic = dic[@"success"];
+        NSArray *array = successDic[@"acData"];
+        for (NSDictionary *dic in array) {
+            [self.acArray addObject:[[GoodModel alloc]initWithDicticionary:dic]];
+        }
+        //刷新tableView,他会重新执行tableView的所有代理方法
+        [self.tableView reloadData];
+    }
+    [self.tableView tableViewDidFinishedLoading];
+    self.tableView.reachedTheEnd = NO;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.acArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GoodTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
-    
-    
-    
+    cell.goodModel = self.acArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
+    AcitivyViewController *activityDetailVC = [storyBoard instantiateViewControllerWithIdentifier:@"123"];
+    GoodModel *goodModel = self.acArray[indexPath.row];
+    activityDetailVC.activityId = goodModel.ID;
+    [self.navigationController pushViewController:activityDetailVC animated:YES];
 }
 
 @end

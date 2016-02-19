@@ -7,7 +7,6 @@
 //
 
 #import "AcitivyViewController.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "ActivityView.h"
 #import "AppDelegate.h"
 
@@ -57,15 +56,15 @@
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //////
     [sessionManager GET:[NSString stringWithFormat:@"%@&id=%@", kActicityDetail, self.activityId] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
         fSLog(@"%@", error);
     }];
 }

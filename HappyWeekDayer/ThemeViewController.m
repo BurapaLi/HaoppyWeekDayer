@@ -8,7 +8,6 @@
 
 #import "ThemeViewController.h"
 #import <AFNetworking/AFHTTPSessionManager.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "ThemeView.h"
 
 @interface ThemeViewController ()
@@ -37,15 +36,13 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [sessionManager GET:[NSString stringWithFormat:@"%@&id=%@", kActicityTheme, self.themeid] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         fSLog(@"%@", error);
     }];
     

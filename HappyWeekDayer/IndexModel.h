@@ -9,39 +9,26 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 typedef enum {
-    /**
-     推荐活动
-     */
+    /** 推荐活动 */
     RecommendTypeActivity = 1,
-    /**
-     推荐专题
-     */
+    /** 推荐专题 */
     RecommendTypeTheme = 2,
     
 }RecommendType;
 
 
 @interface IndexModel : NSObject
-/**
- 首页大图
- */
+/** 首页大图 */
 @property (nonatomic, copy) NSString *image_big;
-/**
- 标题
- */
+/** 标题 */
 @property (nonatomic, copy) NSString *title;
-/**
- 价格
- */
+/** 价格 */
 @property (nonatomic, copy) NSString *price;
-/**
- 经度
- */
+/** 经度 */
 @property(nonatomic, assign) CGFloat lat;
-/**
- 维度
- */
+/** 维度 */
 @property (nonatomic, assign) CGFloat  lng;
+/** 地址 */
 @property (nonatomic, copy  ) NSString *address;
 @property (nonatomic, copy  ) NSString *counts;
 @property (nonatomic, copy  ) NSString *startTime;

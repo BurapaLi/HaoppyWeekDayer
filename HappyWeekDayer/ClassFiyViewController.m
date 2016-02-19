@@ -1,3 +1,4 @@
+
 //
 //  ClassFiyViewController.m
 //  HappyWeekDayer
@@ -10,15 +11,15 @@
 #import "AcitivyViewController.h"
 #import "GoodModel.h"
 #import "GoodTableViewCell.h"
+#import "goodViewController.h"
 
-@interface ClassFiyViewController ()<PullingRefreshTableViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ClassFiyViewController ()<UITableViewDelegate,UITableViewDataSource,PullingRefreshTableViewDelegate>
 {
     NSInteger _pagecount;
 }
 @property (nonatomic, strong) PullingRefreshTableView *tableView;
 @property (nonatomic, assign) BOOL refreshing;
-//展示数据
-@property (nonatomic, strong) NSMutableArray *showDataArray;
+@property (nonatomic, strong) NSMutableArray *showDataArray;//展示数据
 @property (nonatomic, strong) NSMutableArray *showArray;
 @property (nonatomic, strong) NSMutableArray *touristArray;
 @property (nonatomic, strong) NSMutableArray *studentArray;
@@ -33,19 +34,76 @@
     [super viewDidLoad];
     self.title = @"分类列表";
     self.tabBarController.tabBar.hidden = YES;
-    
-    [self.view addSubview:self.segmentedControl];
+    [self.view addSubview:self.tableView];
     [self showBackButton];
-    self.tableView.tableFooterView = [[UITableView alloc] init];
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-//    [self.tableView launchRefreshing];
-    
-    [self tou];
+    [self.view addSubview:self.segmentedControl];
     [self getFourRequest];
+}
+
+- (void)segmentCtrlValuechange: (VOSegmentedControl *)segmentCtrl{
+    self.classifyType = segmentCtrl.selectedSegmentIndex + 1;
     [self showPreviousSelectButton];
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [ProgressHUD dismiss];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.showDataArray.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GoodTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.goodModel = self.showDataArray[indexPath.row];
+    return cell;
+}
+#pragma mark ------------  UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"123" bundle:nil];
+    AcitivyViewController *activityVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"ActivityDetailVC"];
+    //活动id
+    goodViewController *model = self.showDataArray[indexPath.row];
+    activityVC.activityId = model.themeid;
+    activityVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:activityVC animated:YES];
+}
+#pragma mark ------------  PullingRefreshTableViewDelegate
+//tableView下拉刷新开始的时候调用
+- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView {
+    _pagecount = 1;
+    self.refreshing = YES;
+    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
+}
+
+//tableView上拉刷新开始的时候调用
+- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView {
+    _pagecount += 1;
+    self.refreshing = NO;
+    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
+}
+
+//刷新完成时间
+- (NSDate *)pullingTableViewRefreshingFinishedDate{
+    return [DateTools getSystemNowDate];
+}
+
+//手指开始拖动方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.tableView tableViewDidScroll:scrollView];
+}
+
+//手指结束拖动方法
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    [self.tableView tableViewDidEndDragging:scrollView];
+}
+
 - (void)showPreviousSelectButton{
+    if (self.refreshing) { //下拉删除原来的数据
+        if (self.showDataArray.count > 0) {
+            [self.showDataArray removeAllObjects];
+        }
+    }
     switch (self.classifyType) {
         case ClassifyTypeShowRepertorie:{
             self.showDataArray = self.showArray;
@@ -67,85 +125,105 @@
         default:
             break;
     }
+    
+    //完成加载
+    [self.tableView tableViewDidFinishedLoading];
+    self.tableView.reachedTheEnd = NO;
+    //刷新tableView，他会重新执行tableView的所有代理方法
     [self.tableView reloadData];
-}
-//演出剧目 景点场馆 学习益智 亲子旅游
-- (void)tou{
-    self.segmentedControl = [[VOSegmentedControl alloc] initWithSegments:@[@{VOSegmentText: @"演出剧目"}, @{VOSegmentText: @"景点场馆"},@{VOSegmentText: @"学习益智"}, @{VOSegmentText: @"亲子旅游"}]];
-    
-    self.segmentedControl.contentStyle = VOContentStyleTextAlone;
-    self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
-    self.segmentedControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.segmentedControl.selectedBackgroundColor = self.segmentedControl.backgroundColor;
-    self.segmentedControl.allowNoSelection = NO;
-    self.segmentedControl.frame = CGRectMake(10, 100, 300, 40);
-    self.segmentedControl.indicatorThickness = 4;
-    self.segmentedControl.tag = 1;
-    [self.view addSubview:self.segmentedControl];
-    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
-        NSLog(@"1: block --> %@", @(index));
-    }];
-    [self.segmentedControl addTarget:self action:@selector(segmentCtrlValuechange:) forControlEvents:UIControlEventValueChanged];
-    
-    
-}
-- (void)segmentCtrlValuechange: (VOSegmentedControl *)segmentCtrl{
-//    NSLog(@"%@: value --> %@",@(segmentCtrl.tag), @(segmentCtrl.selectedSegmentIndex));
 }
 
 #pragma mark    //数据请求
 - (void)getFourRequest{
-    //演出剧目typeid=6
+    switch (self.classifyType) {
+        case ClassifyTypeShowRepertorie:{
+            [self makeShow];
+        }
+            break;
+        case ClassifyTypeTouristPlace:{
+            [self makeTourist];
+        }
+            break;
+        case ClassifyTypeFamilyTravel:{
+            [self makeStudy];
+        }
+            break;
+        case ClassifyTypeStudyPUZ:{
+            [self makeFamily];
+        }
+            break;
+            
+        default:
+            break;
+            
+    }
+}
+- (void)makeShow{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    //演出剧目typeid=6
+    [ProgressHUD show:@"网络拼命加载中..."];
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(6)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make1:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
         fSLog(@"%@", error);
     }];
     
+    
+}
+- (void)makeTourist{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //= 景点场馆23
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(23)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make2:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
         fSLog(@"%@", error);
     }];
+    
+    
+}
+- (void)makeStudy{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //= 学习益智22
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(22)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make3:responseObject];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
         fSLog(@"%@", error);
     }];
+    
+    
+}
+- (void)makeFamily{
+    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
+    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //= 21
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(21)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make4:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        fSLog(@"%@", error);
+        [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
-
+    
+    
 }
-
 - (void)make1:(NSDictionary *)responseObject{
     NSDictionary *resultDic = responseObject;
     NSString *ststus = resultDic[@"status"];
@@ -159,7 +237,7 @@
         }
         //刷新tableView,他会重新执行tableView的所有代理方法
         [self.tableView reloadData];
-
+        
     }
 }
 - (void)make2:(NSDictionary *)responseObject{
@@ -174,7 +252,9 @@
             GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
             [self.touristArray addObject:model];
         }
-        [self.tableView reloadData];
+        
+        //根据上一页选择的按钮，确定显示第几页数据
+        [self showPreviousSelectButton];
     }
 }
 - (void)make3:(NSDictionary *)responseObject{
@@ -189,10 +269,12 @@
             GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
             [self.studentArray addObject:model];
         }
-        [self.tableView reloadData];
-
+        
+        //根据上一页选择的按钮，确定显示第几页数据
+        [self showPreviousSelectButton];
+        
     }
-
+    
 }
 - (void)make4:(NSDictionary *)responseObject{
     NSDictionary *resultDic = responseObject;
@@ -206,71 +288,42 @@
             GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
             [self.familyArray addObject:model];
         }
-        [self.tableView reloadData];
-
+        
+        //根据上一页选择的按钮，确定显示第几页数据
+        [self showPreviousSelectButton];
+        
     }
 }
-#pragma mark    //CustomMethod
 
-#pragma mark    //表格数据源
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.showArray.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GoodTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.goodModel = self.showArray[indexPath.row];
-    
-    return cell;
-}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
-    AcitivyViewController *activityDetailVC = [storyBoard instantiateViewControllerWithIdentifier:@"123"];
-//    GoodModel *goodModel = self.acArray[indexPath.row];
-//    activityDetailVC.activityId = goodModel.ID;
-    
-    [self.navigationController pushViewController:activityDetailVC animated:YES];
-}
-#pragma mark    //表格代理
-
-#pragma mark    //PullingRefreshTableViewDelegate
-//tableView下拉刷新开始的时候调用
-- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
-    
-    self.refreshing = YES;
-    _pagecount = 1;
-    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
-    
-    
-}
-//上拉
-- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView{
-    self.refreshing = NO;
-    _pagecount = 1;
-    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
-}
-//刷新完成时间
-- (NSDate *)pullingTableViewRefreshingFinishedDate{
-    return [DateTools getSystemNowDate];
-    
-}
-//手指开始拖动方法
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.tableView tableViewDidScroll:scrollView];
-    
-}
-//手指结束拖动方法
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    [self.tableView tableViewDidEndDragging:scrollView];
+- (VOSegmentedControl *)segmentedControl
+{
+    if (!_segmentedControl) {
+        self.segmentedControl = [[VOSegmentedControl alloc] initWithSegments:@[@{VOSegmentText: @"演出剧目"}, @{VOSegmentText: @"景点场馆"},@{VOSegmentText: @"学习益智"}, @{VOSegmentText: @"亲子旅游"}]];
+        self.segmentedControl.contentStyle = VOContentStyleTextAlone;
+        self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
+        self.segmentedControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        self.segmentedControl.selectedBackgroundColor = self.segmentedControl.backgroundColor;
+        self.segmentedControl.allowNoSelection = NO;
+        self.segmentedControl.frame = CGRectMake(0, 64, kWidth, 40);
+        self.segmentedControl.indicatorThickness = 4;
+        self.segmentedControl.tag = self.classifyType - 1;
+        [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+            //        NSLog(@"1: block --> %@", @(index));
+        }];
+        [self.segmentedControl addTarget:self action:@selector(segmentCtrlValuechange:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _segmentedControl;
 }
 
-#pragma mark    //懒加载
 - (PullingRefreshTableView *)tableView
 {
     if (!_tableView) {
-        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, - 40, kWidth, kHeight - 64 - 40) pullingDelegate:self];
+        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 40, kWidth, kHeight - 40) pullingDelegate:self];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.backgroundColor = [UIColor colorWithRed:arc4random() %256/255.0f green:arc4random() %256/255.0f blue:arc4random() %256/255.0f alpha:arc4random() %256/255.0f];
+        self.tableView.rowHeight = 90;
     }
     return _tableView;
 }
@@ -302,35 +355,6 @@
     }
     return _familyArray;
 }
-- (VOSegmentedControl *)segmentedControl
-{
-    if (!_segmentedControl) {
-        self.segmentedControl = [[VOSegmentedControl alloc] init];
-    }
-    return _segmentedControl;
-}
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

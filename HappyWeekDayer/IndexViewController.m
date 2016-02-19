@@ -49,36 +49,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
-    
-    
-}
-- (NSMutableArray *)listArray
-{
-    if (!_listArray) {
-        self.listArray = [[NSMutableArray alloc] init];
-    }
-    return _listArray;
-}
-- (NSMutableArray *)activityAray
-{
-    if (!_activityAray) {
-        self.activityAray = [[NSMutableArray alloc] init];
-    }
-    return _activityAray;
-}
-- (NSMutableArray *)themeArray
-{
-    if (!_themeArray) {
-        self.themeArray = [[NSMutableArray alloc] init];
-    }
-    return _themeArray;
-}
-- (NSMutableArray *)adArray
-{
-    if (!_adArray) {
-        self.adArray = [[NSMutableArray alloc] init];
-    }
-    return _adArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -212,7 +182,7 @@
     }
     //精选活动
     [headerView addSubview:self.activityBtn];
-    //&推荐专题
+    //热门专题
     [headerView addSubview:self.themeBtn];
 }
 
@@ -228,7 +198,7 @@
     return _activityBtn;
 }
 
-#pragma mark    //&推荐专题
+#pragma mark    //热门专题
 - (UIButton *)themeBtn{
     if (_themeBtn == nil) {
         self.themeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -352,7 +322,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     UIView *view = [[UIView alloc] init];
-    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth / 2 - 160, 5, 320, 16)];
+    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth / 2 - 160, 5, 414, 16)];
     if (section == 0) {
         imageview.image = [UIImage imageNamed:@"home_recommed_ac"];
     }else{
@@ -382,9 +352,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     IndexTableViewCell *indexCell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//    NSMutableArray *array = self.listArray[indexPath.section];
-//    indexCell.model = array[indexPath.row];
-    
+    indexCell.contentView.backgroundColor = [UIColor colorWithRed:arc4random() %256/255.0f green:arc4random() %256/255.0f blue:arc4random() %256/255.0f alpha:arc4random() %256/255.0f];
     indexCell.model = self.listArray[indexPath.section][indexPath.row];
     return indexCell;
 }
@@ -400,6 +368,34 @@
     }
 }
 
+- (NSMutableArray *)listArray
+{
+    if (!_listArray) {
+        self.listArray = [[NSMutableArray alloc] init];
+    }
+    return _listArray;
+}
+- (NSMutableArray *)activityAray
+{
+    if (!_activityAray) {
+        self.activityAray = [[NSMutableArray alloc] init];
+    }
+    return _activityAray;
+}
+- (NSMutableArray *)themeArray
+{
+    if (!_themeArray) {
+        self.themeArray = [[NSMutableArray alloc] init];
+    }
+    return _themeArray;
+}
+- (NSMutableArray *)adArray
+{
+    if (!_adArray) {
+        self.adArray = [[NSMutableArray alloc] init];
+    }
+    return _adArray;
+}
 
 @end
 

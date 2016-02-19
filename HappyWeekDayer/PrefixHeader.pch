@@ -9,27 +9,21 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
-//#ifdef __OBJC__
-//#import <UIKit/UIKit.h>
-//#import <Foundation/Foundation.h>
-//#endif
-
-
-#define kWidth  [UIScreen mainScreen].bounds.size.width
-#define kHeight  [UIScreen mainScreen].bounds.size.height
-
-
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "Header.h"
 #import "UIViewController+Common.h"
 #import "UIView+EstensionView.h"
-#import <UIKit/UIKit.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
-#import <MBProgressHUD/MBProgressHUD.h>
+#import "ProgressHUD.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "DateTools.h"
 #import "PullingRefreshTableView.h"
 #import "VOSegmentedControl.h"
 
+
+#endif
 
 #ifdef DEBUG
 #   define fSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
@@ -37,11 +31,21 @@
 #   define fSLog(...)
 #endif
 
-//#ifdef DEBUG
-//#define fSLog(...) NSLog(__VA_ARGS__)
-//#else
-//#define fSLog(...)
-//#endif
+
+#define kWidth  [UIScreen mainScreen].bounds.size.width
+#define kHeight  [UIScreen mainScreen].bounds.size.height
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+//weibo
+#define kAppKey @"1218823934"
+#define kAppSecret @"7b4d9a0f4c0430344958a7065d88a05e"
+#define kRedirectURL @"https://api.weibo.com/oauth2/default.html"
+//weixin
+#define kAppID @"wx5b0203b52038cc86"
+#define AppSecret @"35cf8c4a9d5eb3edb67f163586bff279"
+#define kRedirectURI    @"http://www.sina.com"
+//bmob
+#define kbmobAppKey @"35249648b4a9fa34c3f297b7701583ef"
 
 #endif
 

@@ -101,15 +101,15 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%ld", khuodong, _pagecount] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make:responseObject];
         
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //////
         fSLog(@"%@", error);
     }];
 }

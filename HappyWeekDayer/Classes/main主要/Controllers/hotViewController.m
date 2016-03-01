@@ -16,7 +16,6 @@
 }
 @property(nonatomic, strong) PullingRefreshTableView *tableView;
 @property(nonatomic, assign) BOOL refreshing;
-@property(nonatomic, strong) HotTableViewCell *hotActivityCell;
 @property(nonatomic, strong) NSMutableArray *acArray;
 
 @end
@@ -29,14 +28,15 @@
     [self showBackButton];
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = 190;
-    [self.tableView registerNib:[UINib nibWithNibName:@"HotActivityTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"HotTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self loadData];
 }
 #pragma mark      --------TableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.hotActivityCell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    self.hotActivityCell.dataDic = self.acArray[indexPath.row];
-    return self.hotActivityCell;
+    HotTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.dataDic = self.acArray[indexPath.row];
+    return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.acArray.count;
@@ -47,6 +47,8 @@
     themeVC.themeid = self.acArray[indexPath.row][@"id"];
     [self.navigationController pushViewController:themeVC animated:YES];
 }
+
+
 #pragma mark    ----------- PullingRefreshDelegate
 //tableView下拉刷新开始的时候调用
 - (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView{
@@ -101,7 +103,7 @@
 #pragma mark   ------------    LazyLoading
 - (PullingRefreshTableView *)tableView{
     if (_tableView == nil) {
-        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, kWidth, kHeight - 64) pullingDelegate:self];
+        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight - 64) pullingDelegate:self];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
     }

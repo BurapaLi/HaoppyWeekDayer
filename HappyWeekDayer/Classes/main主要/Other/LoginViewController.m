@@ -89,11 +89,6 @@
         NSLog(@"成功");
     }];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)backButtonAction:(UIButton *)btn{
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }

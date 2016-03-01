@@ -68,6 +68,8 @@
     activityVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:activityVC animated:YES];
 }
+
+
 #pragma mark ------------  PullingRefreshTableViewDelegate
 //tableView下拉刷新开始的时候调用
 - (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView {
@@ -299,7 +301,11 @@
 - (VOSegmentedControl *)segmentedControl
 {
     if (!_segmentedControl) {
-        self.segmentedControl = [[VOSegmentedControl alloc] initWithSegments:@[@{VOSegmentText: @"演出剧目"}, @{VOSegmentText: @"景点场馆"},@{VOSegmentText: @"学习益智"}, @{VOSegmentText: @"亲子旅游"}]];
+        self.segmentedControl = [[VOSegmentedControl alloc] initWithSegments:@[
+                                                      @{VOSegmentText: @"演出剧目"},
+                                                      @{VOSegmentText: @"景点场馆"},
+                                                      @{VOSegmentText: @"学习益智"},
+                                                      @{VOSegmentText: @"亲子旅游"}]];
         self.segmentedControl.contentStyle = VOContentStyleTextAlone;
         self.segmentedControl.indicatorStyle = VOSegCtrlIndicatorStyleBottomLine;
         self.segmentedControl.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -309,7 +315,6 @@
         self.segmentedControl.indicatorThickness = 4;
         self.segmentedControl.tag = self.classifyType - 1;
         [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
-            //        NSLog(@"1: block --> %@", @(index));
         }];
         [self.segmentedControl addTarget:self action:@selector(segmentCtrlValuechange:) forControlEvents:UIControlEventValueChanged];
     }
@@ -319,10 +324,9 @@
 - (PullingRefreshTableView *)tableView
 {
     if (!_tableView) {
-        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 40, kWidth, kHeight - 40) pullingDelegate:self];
+        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 40 + 64, kWidth, kHeight - 40 - 64) pullingDelegate:self];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
-        self.tableView.backgroundColor = [UIColor colorWithRed:arc4random() %256/255.0f green:arc4random() %256/255.0f blue:arc4random() %256/255.0f alpha:arc4random() %256/255.0f];
         self.tableView.rowHeight = 90;
     }
     return _tableView;

@@ -7,24 +7,23 @@
 //
 
 #import "ImageTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface ImageTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *headImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 @implementation ImageTableViewCell
-
-- (void)awakeFromNib {
-    // Initialization code
-}
+    
 - (void)setModel:(DiscoverModel *)model {
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:model.image] placeholderImage:nil];
-    self.headImageView.layer.cornerRadius = 40;
+    self.headImageView.layer.borderColor = [UIColor grayColor].CGColor;
+    self.headImageView.layer.borderWidth = 1.0;
+    self.headImageView.layer.cornerRadius = 25;
     self.headImageView.clipsToBounds = YES;
     self.titleLabel.text = model.title;
     
-    fSLog(@"%@",model.title);
-    fSLog(@"%@",model.image);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

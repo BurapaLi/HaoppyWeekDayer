@@ -16,6 +16,7 @@
 #import "ClassFiyViewController.h"
 #import "goodViewController.h"
 #import "hotViewController.h"
+#import "HWTitleButton.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -205,7 +206,7 @@
         self.themeBtn.frame = CGRectMake(kWidth / 2, 186 + 157 / 2 + 10, kWidth / 2 - 10, 157 / 2 - 10);
         [self.themeBtn setImage:[UIImage imageNamed:@"home_zhuanti"] forState:UIControlStateNormal];
         self.themeBtn.tag = 105;
-        [self.themeBtn addTarget:self action:@selector(goodActivityButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.themeBtn addTarget:self action:@selector(hotActivityButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _themeBtn;
 }
@@ -276,7 +277,6 @@
         //推荐广告
         NSArray *adDataArray = dic[@"adData"];
         for (NSDictionary *dic in adDataArray) {
-//            [self.adArray addObject:dic[@"url"]];
             NSDictionary *dict = @{@"url" : dic[@"url"], @"type" : dic[@"type"], @"id" : dic[@"id"]};
             [self.adArray addObject:dict];
         }
@@ -291,18 +291,34 @@
 #pragma mark    //导航栏按钮
 - (void)button{
     
-    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"北京" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityBtn:)];
-    self.navigationItem.leftBarButtonItem = left;
+//    HWTitleButton *titleButton = [[HWTitleButton alloc] init];
+//    [titleButton setTitle:@"北京" forState:UIControlStateNormal];
+//    self.navigationItem.titleView = titleButton;
     
-//    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
-//    right.frame = CGRectMake(0, 0, 14, 14);
-//    [right setImage:[UIImage imageNamed:@"btn_search.png"] forState:UIControlStateNormal];
-//    [right addTarget:self action:@selector(seacherActityBtn:) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithCustomView:right];
-//    self.navigationItem.rightBarButtonItem = rightBtn;
+//        UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"北京" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityBtn:)];
+//        self.navigationItem.leftBarButtonItem = left;
     
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(seacherActityBtn:)];
-    self.navigationItem.rightBarButtonItem = right;
+//    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(seacherActityBtn:)];
+//    self.navigationItem.rightBarButtonItem = right;
+    
+    UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
+    left.frame = CGRectMake(0, 0, 60, 60);
+    [left setImage:[UIImage imageNamed:@"btn_chengshi"] forState:UIControlStateNormal];
+    [left setTitle:@"北京" forState:UIControlStateNormal];
+    left.imageEdgeInsets = UIEdgeInsetsMake(0, - 30, 0, 0);
+    left.titleEdgeInsets = UIEdgeInsetsMake(0, - 30, 0, 0);
+    [left addTarget:self action:@selector(selectCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
+    self.navigationItem.leftBarButtonItem = leftBtn;
+ 
+   UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
+   right.frame = CGRectMake(kWidth - 20, 0, 20, 20);
+   [right setImage:[UIImage imageNamed:@"btn_search.png"] forState:UIControlStateNormal];
+   [right addTarget:self action:@selector(seacherActityBtn:) forControlEvents:UIControlEventTouchUpInside];
+   UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithCustomView:right];
+   self.navigationItem.rightBarButtonItem = rightBtn;
+ 
+    
     
 }
 

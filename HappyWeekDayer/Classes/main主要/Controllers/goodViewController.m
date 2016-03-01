@@ -88,7 +88,7 @@
 
 - (PullingRefreshTableView *)tableView{
     if (!_tableView) {
-        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:self.view.frame pullingDelegate:self];
+        self.tableView = [[PullingRefreshTableView alloc] initWithFrame:CGRectMake(0, 64, kWidth, kHeight - 64) pullingDelegate:self];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
     }
@@ -107,20 +107,16 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make:responseObject];
         
-        //////
+         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //////
+         
         fSLog(@"%@", error);
     }];
 }
 - (void)make:(NSDictionary *)responseObject{
-//        fSLog(@"%@",responseObject);
     NSDictionary *dic = responseObject;
     NSString *status = dic[@"status"];
     NSInteger code = [dic[@"code"] integerValue];
-//    if ([status isEqualToString:@"success"] && code == 0) {
-//        self.goodTableViewCell.dataDic = dic[@"success"];
-//    }
     if (self.refreshing) {
         //下拉刷新的时候需要移除数组中的元素
         if (self.acArray.count > 0) {

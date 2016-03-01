@@ -20,14 +20,8 @@
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:dataDic[@"img"]] placeholderImage:nil];
     [self.loveCountBtn setTitle:[NSString stringWithFormat:@"%@", dataDic[@"counts"]] forState:UIControlStateNormal];
 }
-- (void)awakeFromNib {
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
+
 
 @end

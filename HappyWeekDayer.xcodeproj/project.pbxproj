@@ -42,6 +42,39 @@
 		7A2EB2491C7799DF00985F5D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2EB2061C7799DF00985F5D /* libWeChatSDK.a */; };
 		7A2EB24A1C7799DF00985F5D /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB2071C7799DF00985F5D /* read_me.txt */; };
 		7A41D6541C462BF100F7EF3E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A41D6531C462BF100F7EF3E /* MessageUI.framework */; };
+		7A8DECF91C85332D0063B278 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1AC1C7799DF00985F5D /* IndexViewController.m */; };
+		7A8DECFA1C85332D0063B278 /* IndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1AF1C7799DF00985F5D /* IndexModel.m */; };
+		7A8DECFB1C85332D0063B278 /* IndexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1B31C7799DF00985F5D /* IndexTableViewCell.m */; };
+		7A8DECFC1C85332D0063B278 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1A51C7799DF00985F5D /* FindViewController.m */; };
+		7A8DECFD1C85332D0063B278 /* OwerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1E31C7799DF00985F5D /* OwerViewController.m */; };
+		7A8DECFE1C85332D0063B278 /* AcitivyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1B81C7799DF00985F5D /* AcitivyViewController.m */; };
+		7A8DECFF1C85332D0063B278 /* ClassFiyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1BA1C7799DF00985F5D /* ClassFiyViewController.m */; };
+		7A8DED001C85332D0063B278 /* goodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1BC1C7799DF00985F5D /* goodViewController.m */; };
+		7A8DED011C85332D0063B278 /* hotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1BE1C7799DF00985F5D /* hotViewController.m */; };
+		7A8DED021C85332D0063B278 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1C01C7799DF00985F5D /* LoginViewController.m */; };
+		7A8DED031C85332D0063B278 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1C21C7799DF00985F5D /* SearchViewController.m */; };
+		7A8DED041C85332D0063B278 /* SeletCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1C41C7799DF00985F5D /* SeletCityViewController.m */; };
+		7A8DED051C85332D0063B278 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1C61C7799DF00985F5D /* ShareViewController.m */; };
+		7A8DED061C85332D0063B278 /* ThemeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1C81C7799DF00985F5D /* ThemeViewController.m */; };
+		7A8DED071C85332D0063B278 /* DiscoverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1CB1C7799DF00985F5D /* DiscoverModel.m */; };
+		7A8DED081C85332D0063B278 /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1CD1C7799DF00985F5D /* GoodModel.m */; };
+		7A8DED091C85332D0063B278 /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D01C7799DF00985F5D /* ActivityView.m */; };
+		7A8DED0A1C85332D0063B278 /* GoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D21C7799DF00985F5D /* GoodTableViewCell.m */; };
+		7A8DED0B1C8533540063B278 /* HotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D51C7799DF00985F5D /* HotTableViewCell.m */; };
+		7A8DED0C1C8533540063B278 /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D81C7799DF00985F5D /* ImageTableViewCell.m */; };
+		7A8DED0D1C8533540063B278 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1DC1C7799DF00985F5D /* ShareView.m */; };
+		7A8DED0E1C8533540063B278 /* ThemeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1DF1C7799DF00985F5D /* ThemeView.m */; };
+		7A8DED0F1C8533540063B278 /* DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1EC1C7799DF00985F5D /* DateTools.m */; };
+		7A8DED101C8533540063B278 /* UIView+EstensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB20C1C7799DF00985F5D /* UIView+EstensionView.m */; };
+		7A8DED111C8533540063B278 /* UIViewController+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB20E1C7799DF00985F5D /* UIViewController+Common.m */; };
+		7A8DED121C8533540063B278 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AAAA1921C79FEFC002E05F3 /* ProgressHUD.m */; };
+		7A8DED131C8533540063B278 /* PullingRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB2041C7799DF00985F5D /* PullingRefreshTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7A8DED141C8533540063B278 /* VOContentLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB2111C7799DF00985F5D /* VOContentLayer.m */; };
+		7A8DED151C8533540063B278 /* VOIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB2131C7799DF00985F5D /* VOIndicatorAnimation.m */; };
+		7A8DED161C8533540063B278 /* VOSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB2151C7799DF00985F5D /* VOSegment.m */; };
+		7A8DED171C8533540063B278 /* VOSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB2171C7799DF00985F5D /* VOSegmentedControl.m */; };
+		7A8DED181C8533540063B278 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD427F1C3A1C0A007A577C /* AppDelegate.m */; };
+		7A8DED191C8533540063B278 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADD427C1C3A1C09007A577C /* main.m */; };
 		7AAAA1931C79FEFC002E05F3 /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AAAA1901C79FEFC002E05F3 /* ProgressHUD.bundle */; };
 		7AD7D1391C77A2570055CD71 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD7D12D1C77A2570055CD71 /* libWeiboSDK.a */; };
 		7AD7D13A1C77A2570055CD71 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD7D1361C77A2570055CD71 /* WeiboSDK.bundle */; };
@@ -619,6 +652,7 @@
 				7ADD42761C3A1C09007A577C /* Resources */,
 				964BAA144B237884DE7703B2 /* Embed Pods Frameworks */,
 				8E84CF9D3E1631A9C35E8E18 /* Copy Pods Resources */,
+				7A8DECF81C8533100063B278 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -742,6 +776,49 @@
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A8DECF81C8533100063B278 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A8DED0B1C8533540063B278 /* HotTableViewCell.m in Sources */,
+				7A8DED0C1C8533540063B278 /* ImageTableViewCell.m in Sources */,
+				7A8DED0D1C8533540063B278 /* ShareView.m in Sources */,
+				7A8DED0E1C8533540063B278 /* ThemeView.m in Sources */,
+				7A8DED0F1C8533540063B278 /* DateTools.m in Sources */,
+				7A8DED101C8533540063B278 /* UIView+EstensionView.m in Sources */,
+				7A8DED111C8533540063B278 /* UIViewController+Common.m in Sources */,
+				7A8DED121C8533540063B278 /* ProgressHUD.m in Sources */,
+				7A8DED131C8533540063B278 /* PullingRefreshTableView.m in Sources */,
+				7A8DED141C8533540063B278 /* VOContentLayer.m in Sources */,
+				7A8DED151C8533540063B278 /* VOIndicatorAnimation.m in Sources */,
+				7A8DED161C8533540063B278 /* VOSegment.m in Sources */,
+				7A8DED171C8533540063B278 /* VOSegmentedControl.m in Sources */,
+				7A8DED181C8533540063B278 /* AppDelegate.m in Sources */,
+				7A8DED191C8533540063B278 /* main.m in Sources */,
+				7A8DECF91C85332D0063B278 /* IndexViewController.m in Sources */,
+				7A8DECFA1C85332D0063B278 /* IndexModel.m in Sources */,
+				7A8DECFB1C85332D0063B278 /* IndexTableViewCell.m in Sources */,
+				7A8DECFC1C85332D0063B278 /* FindViewController.m in Sources */,
+				7A8DECFD1C85332D0063B278 /* OwerViewController.m in Sources */,
+				7A8DECFE1C85332D0063B278 /* AcitivyViewController.m in Sources */,
+				7A8DECFF1C85332D0063B278 /* ClassFiyViewController.m in Sources */,
+				7A8DED001C85332D0063B278 /* goodViewController.m in Sources */,
+				7A8DED011C85332D0063B278 /* hotViewController.m in Sources */,
+				7A8DED021C85332D0063B278 /* LoginViewController.m in Sources */,
+				7A8DED031C85332D0063B278 /* SearchViewController.m in Sources */,
+				7A8DED041C85332D0063B278 /* SeletCityViewController.m in Sources */,
+				7A8DED051C85332D0063B278 /* ShareViewController.m in Sources */,
+				7A8DED061C85332D0063B278 /* ThemeViewController.m in Sources */,
+				7A8DED071C85332D0063B278 /* DiscoverModel.m in Sources */,
+				7A8DED081C85332D0063B278 /* GoodModel.m in Sources */,
+				7A8DED091C85332D0063B278 /* ActivityView.m in Sources */,
+				7A8DED0A1C85332D0063B278 /* GoodTableViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
 		7ADD42831C3A1C0A007A577C /* LaunchScreen.storyboard */ = {

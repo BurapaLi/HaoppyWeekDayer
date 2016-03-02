@@ -35,7 +35,7 @@
     self.title = @"分类列表";
     self.tabBarController.tabBar.hidden = YES;
     [self.view addSubview:self.tableView];
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.segmentedControl];
     [self getFourRequest];

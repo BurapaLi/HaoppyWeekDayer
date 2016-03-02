@@ -238,9 +238,8 @@
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     [sessionManager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-//        fSLog(@"%lld",downloadProgress.totalUnitCount);
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        fSLog(@"%@",responseObject);
         [self make:responseObject];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -305,8 +304,8 @@
     left.frame = CGRectMake(0, 0, 60, 60);
     [left setImage:[UIImage imageNamed:@"btn_chengshi"] forState:UIControlStateNormal];
     [left setTitle:@"北京" forState:UIControlStateNormal];
-    left.imageEdgeInsets = UIEdgeInsetsMake(0, - 30, 0, 0);
-    left.titleEdgeInsets = UIEdgeInsetsMake(0, - 30, 0, 0);
+    left.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
+    left.titleEdgeInsets = UIEdgeInsetsMake(0, - 40, 0, 0);
     [left addTarget:self action:@selector(selectCityBtn:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
     self.navigationItem.leftBarButtonItem = leftBtn;
@@ -325,7 +324,8 @@
 #pragma mark    //导航栏按钮点击方法
 - (void)selectCityBtn:(UIBarButtonItem *)barButton{
     SeletCityViewController *o = [[SeletCityViewController alloc] init];
-    [self.navigationController presentViewController:o animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:o];
+    [self presentViewController:nav animated:YES completion:nil];
     
 }
 - (void)seacherActityBtn:(UIBarButtonItem *)barButton{

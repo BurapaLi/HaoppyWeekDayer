@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"活动详情";
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
     [self getModel];
     self.tabBarController.tabBar.hidden = YES;
     

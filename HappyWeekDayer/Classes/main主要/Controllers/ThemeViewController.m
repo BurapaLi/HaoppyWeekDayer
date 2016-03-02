@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
 }
 - (void)getModel{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];

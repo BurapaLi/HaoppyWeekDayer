@@ -30,7 +30,7 @@
     self.tabBarController.tabBar.hidden = YES;
     
     [self.view addSubview:self.tableView];
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
     self.tableView.tableFooterView = [[UITableView alloc] init];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];

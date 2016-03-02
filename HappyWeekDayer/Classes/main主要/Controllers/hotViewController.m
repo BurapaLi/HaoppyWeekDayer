@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"热门专题";
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
     [self.view addSubview:self.tableView];
     self.tableView.rowHeight = 190;
     

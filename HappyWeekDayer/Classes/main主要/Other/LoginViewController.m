@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self showBackButton];
+    [self showBackButtonWithImage:@"back"];
 }
 - (IBAction)ModeifyData:(id)sender {
     //查找GameScore表

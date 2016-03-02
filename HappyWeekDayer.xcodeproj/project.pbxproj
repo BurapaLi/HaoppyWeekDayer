@@ -90,6 +90,7 @@
 		7AD7D13A1C77A2570055CD71 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD7D1361C77A2570055CD71 /* WeiboSDK.bundle */; };
 		7ADD42821C3A1C0A007A577C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD42811C3A1C0A007A577C /* Assets.xcassets */; };
 		7ADD42851C3A1C0A007A577C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD42831C3A1C0A007A577C /* LaunchScreen.storyboard */; };
+		7ADDD56E1C871AD7003E7174 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDD56D1C871AD7003E7174 /* TabBarViewController.m */; };
 		7AE71FAE1C48EA3500E71322 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FAD1C48EA3400E71322 /* CoreLocation.framework */; };
 		7AE71FB01C48EA5D00E71322 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FAF1C48EA5D00E71322 /* MobileCoreServices.framework */; };
 		7AE71FB21C48EA7000E71322 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FB11C48EA7000E71322 /* CFNetwork.framework */; };
@@ -97,6 +98,7 @@
 		7AE71FB61C48EA9F00E71322 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FB51C48EA9F00E71322 /* libicucore.tbd */; };
 		7AE71FB81C48EAB100E71322 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FB71C48EAB100E71322 /* AVFoundation.framework */; };
 		7AE71FBA1C48EAC000E71322 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AE71FB91C48EAC000E71322 /* MediaPlayer.framework */; };
+		ABB14E920E065F811EED5453 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A05F4471C468950006573FC /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -244,6 +246,8 @@
 		7ADD42811C3A1C0A007A577C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7ADD42841C3A1C0A007A577C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7ADD42861C3A1C0A007A577C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7ADDD56C1C871AD7003E7174 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		7ADDD56D1C871AD7003E7174 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		7AE71FAD1C48EA3400E71322 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7AE71FAF1C48EA5D00E71322 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		7AE71FB11C48EA7000E71322 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -281,6 +285,7 @@
 				7A05F4581C468C89006573FC /* ImageIO.framework in Frameworks */,
 				7A05F4561C468C34006573FC /* QuartzCore.framework in Frameworks */,
 				7A41D6541C462BF100F7EF3E /* MessageUI.framework in Frameworks */,
+				ABB14E920E065F811EED5453 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +324,8 @@
 		7A1857F21C85657900D98CA0 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				7ADDD56C1C871AD7003E7174 /* TabBarViewController.h */,
+				7ADDD56D1C871AD7003E7174 /* TabBarViewController.m */,
 				7A1857F71C85657900D98CA0 /* SeletCityViewController.h */,
 				7A1857F81C85657900D98CA0 /* SeletCityViewController.m */,
 				7A1857F51C85657900D98CA0 /* SearchViewController.h */,
@@ -863,6 +870,7 @@
 				7A1858051C857F8700D98CA0 /* UIBarButtonItem+Extension.m in Sources */,
 				7AB037A71C86F60C00AA17AE /* ShareViewController.m in Sources */,
 				7A8DED171C8533540063B278 /* VOSegmentedControl.m in Sources */,
+				7ADDD56E1C871AD7003E7174 /* TabBarViewController.m in Sources */,
 				7AB037A11C86F2D300AA17AE /* LoginViewController.m in Sources */,
 				7A8DED181C8533540063B278 /* AppDelegate.m in Sources */,
 				7A8DED191C8533540063B278 /* main.m in Sources */,

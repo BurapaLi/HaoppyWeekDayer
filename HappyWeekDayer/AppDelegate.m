@@ -7,13 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "IndexViewController.h"
-#import "FindViewController.h"
-#import "OwerViewController.h"
 #import "WeiboSDK.h"
 #import "WXApi.h"
 #import <BmobSDK/Bmob.h>
 #import <CoreLocation/CoreLocation.h>
+#import "TabBarViewController.h"
+#import "RegisterViewController.h"
+#import "LoginViewController.h"
+#import "OwerViewController.h"
 
 @interface AppDelegate ()<UITabBarControllerDelegate,WeiboSDKDelegate,WXApiDelegate,CLLocationManagerDelegate>
 {
@@ -51,7 +52,7 @@
     }
     // 判断是否是iOS8
     if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0){
-        NSLog(@"是iOS8");
+//        NSLog(@"是iOS8");
         // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
         [_locationManager requestAlwaysAuthorization]; // 请求前台和后台定位权限
         //[self.mgr requestWhenInUseAuthorization];// 请求前台定位权限
@@ -80,36 +81,10 @@
     
 
     
-    //UITabBarController
-    self.tabBarVC = [[UITabBarController alloc] init];
-    //创建被tabBarVC管理的视图控制器
-    //主页
-    UIStoryboard *mainStroyBoard = [UIStoryboard storyboardWithName:@"Index" bundle:nil];
-    UINavigationController *mainNav = mainStroyBoard.instantiateInitialViewController;
-    //发现
-    UIStoryboard *discoverStroyBoard = [UIStoryboard storyboardWithName:@"FindView" bundle:nil];
-    UINavigationController *discoverNav = discoverStroyBoard.instantiateInitialViewController;
-    //我的
-    UIStoryboard *mineStroyBoard = [UIStoryboard storyboardWithName:@"Ower" bundle:nil];
-    UINavigationController *mineNav = mineStroyBoard.instantiateInitialViewController;
+//    UIStoryboard *mineStroyBoard = [UIStoryboard storyboardWithName:@"Ower" bundle:nil];
+//    UINavigationController *mineNav = mineStroyBoard.instantiateInitialViewController;
     
-    mainNav.tabBarItem.image = [UIImage imageNamed:@"ft_found_normal_ic"];
-    discoverNav.tabBarItem.image = [UIImage imageNamed:@"ft_home_normal_ic"];
-    mineNav.tabBarItem.image = [UIImage imageNamed:@"ft_person_normal_ic"];
-    
-    //上左下右
-    mainNav.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    discoverNav.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    mineNav.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
-    
-    
-    mainNav.tabBarItem.selectedImage = [[UIImage imageNamed:@"ft_found_selected_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    discoverNav.tabBarItem.selectedImage = [[UIImage imageNamed:@"ft_home_selected_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    mineNav.tabBarItem.selectedImage = [[UIImage imageNamed:@"ft_person_selected_ic"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    //添加被管理的视图控制器
-    self.tabBarVC.viewControllers = @[mainNav, discoverNav, mineNav];
-    self.window.rootViewController = self.tabBarVC;
+    self.window.rootViewController = [TabBarViewController new];
     
     
     

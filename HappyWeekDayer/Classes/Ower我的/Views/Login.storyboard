@@ -107,14 +107,75 @@
                     <view key="view" contentMode="scaleToFill" id="3yx-2Z-pVH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j5X-eN-Mr8">
+                                <rect key="frame" x="0.0" y="72" width="414" height="30"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W2y-Qx-Qxj">
+                                <rect key="frame" x="0.0" y="110" width="414" height="30"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请确认密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Agb-sj-Etq">
+                                <rect key="frame" x="0.0" y="148" width="414" height="30"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2uv-MB-Shm">
+                                <rect key="frame" x="249" y="186" width="51" height="31"/>
+                                <connections>
+                                    <action selector="SwitchOn:" destination="aXQ-ur-L80" eventType="valueChanged" id="6NK-nL-kmM"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbd-Gm-ltY">
+                                <rect key="frame" x="306" y="191" width="108" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="显示密码">
+                                        <attributes>
+                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <font key="NSFont" size="17" name="PingFangSC-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j1K-dl-X6K">
+                                <rect key="frame" x="59" y="234" width="297" height="45"/>
+                                <color key="backgroundColor" red="0.17705704180000001" green="0.23530311509999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="注册">
+                                            <attributes>
+                                                <font key="NSFont" size="18" name="PingFangSC-Regular"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="login:" destination="aXQ-ur-L80" eventType="touchUpInside" id="mUW-27-Mrh"/>
+                                    <action selector="loginBtn:" destination="tc1-cd-XK8" eventType="touchUpInside" id="IHj-bX-Ez0"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="rUe-uq-lAp"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="SwitchOn" destination="2uv-MB-Shm" id="fkp-9G-RrM"/>
+                        <outlet property="login" destination="j1K-dl-X6K" id="I6X-Oc-lUF"/>
+                        <outlet property="userAgainPassWord" destination="Agb-sj-Etq" id="Rxl-lT-cDH"/>
+                        <outlet property="userName" destination="j5X-eN-Mr8" id="zHl-GT-pyw"/>
+                        <outlet property="userPassWord" destination="W2y-Qx-Qxj" id="5Ml-jH-bdz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TiD-hG-NnT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="400"/>
+            <point key="canvasLocation" x="1495" y="400"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iKb-h0-rc6">

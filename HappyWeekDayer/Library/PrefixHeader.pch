@@ -38,6 +38,8 @@
 #define kHeight  [UIScreen mainScreen].bounds.size.height
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+#define kUDDS(key) [[NSUserDefaults standardUserDefaults] valueForKey:@"key"]
+
 //weibo
 #define kAppKey @"1218823934"
 #define kAppSecret @"7b4d9a0f4c0430344958a7065d88a05e"

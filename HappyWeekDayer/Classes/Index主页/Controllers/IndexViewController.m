@@ -18,30 +18,25 @@
 #import "hotViewController.h"
 #import "HWTitleButton.h"
 
-@interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,SeletCityViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-/**
- 全部列表数据
- */
+/** 全部列表数据 */
 @property (nonatomic, strong) NSMutableArray *listArray;
-/**
- 活动
- */
+/** 活动 */
 @property (nonatomic, strong) NSMutableArray *activityAray;
-/**
- 专题
- */
+/** 专题 */
 @property (nonatomic, strong) NSMutableArray *themeArray;
-/**
- 广告
- */
+/** 广告 */
 @property (nonatomic, strong) NSMutableArray *adArray;
 @property (nonatomic, retain) UIScrollView   *scrollView;
 @property (nonatomic, retain) UIPageControl  *pageControl;
 @property (nonatomic, retain) NSTimer        *timer;
 @property (nonatomic, strong) UIButton       *activityBtn;
 @property (nonatomic, strong) UIButton       *themeBtn;
-
+/** 左按钮 */
+@property (nonatomic, strong) UIButton *leftBtn;
+/** 城市iD */
+@property (nonatomic, copy) NSString *cityId;
 @end
 
 @implementation IndexViewController
@@ -50,25 +45,22 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = NO;
+    self.cityId = @"1";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    /*
-//    self.automaticallyAdjustsScrollViewInsets = NO;
-    
-//    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:96.0/255.0 green:185.0/255.0 blue:191.0/255.0 alpha:1.000];
-    
-//    self.tableView.rowHeight = 203;
-    */
-    
      //注册CELL 96 185 191 // 98 288 288
     [self.tableView registerNib:[UINib nibWithNibName:@"IndexTableViewCell"bundle:nil] forCellReuseIdentifier:@"cell"];
     [self button];
     [self requestModel];
     [self configTableViewHeaderView];
     
+    }
+- (void)getcityName:(NSString *)cityName cityId:(NSString *)cityId{
+    [self.leftBtn setTitle:cityName forState:UIControlStateNormal];
+    self.cityId = cityId;
+    
 }
-
 #pragma mark    //滚图
 - (UIScrollView *)scrollView{
     if (_scrollView == nil) {
@@ -233,7 +225,9 @@
 //======================================================================
 #pragma mark    //数据请求
 - (void)requestModel{
-    NSString *URLString = kIndexDataList;
+    NSNumber *lat = kUDDS(lat);
+    NSNumber *lng = kUDDS(lng);
+    NSString *URLString = [NSString stringWithFormat:kIndexDataList,self.cityId,lat,lng];
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
@@ -294,21 +288,21 @@
 //    [titleButton setTitle:@"北京" forState:UIControlStateNormal];
 //    self.navigationItem.titleView = titleButton;
     
-//        UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"北京" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityBtn:)];
-//        self.navigationItem.leftBarButtonItem = left;
+//        UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithTitle:@"北京" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityBtn:)];
+//        self.navigationItem.leftBtnBarButtonItem = leftBtn;
     
 //    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(seacherActityBtn:)];
 //    self.navigationItem.rightBarButtonItem = right;
     
-    UIButton *left = [UIButton buttonWithType:UIButtonTypeCustom];
-    left.frame = CGRectMake(0, 0, 60, 60);
-    [left setImage:[UIImage imageNamed:@"btn_chengshi"] forState:UIControlStateNormal];
-    [left setTitle:@"北京" forState:UIControlStateNormal];
-    left.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
-    left.titleEdgeInsets = UIEdgeInsetsMake(0, - 40, 0, 0);
-    [left addTarget:self action:@selector(selectCityBtn:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:left];
-    self.navigationItem.leftBarButtonItem = leftBtn;
+    self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.leftBtn.frame = CGRectMake(0, 0, 60, 60);
+    [self.leftBtn setImage:[UIImage imageNamed:@"btn_chengshi"] forState:UIControlStateNormal];
+    [self.leftBtn setTitle:@"北京" forState:UIControlStateNormal];
+    self.leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, 0);
+    self.leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, - 40, 0, 0);
+    [self.leftBtn addTarget:self action:@selector(selectCityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *leftBarBtn = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
+    self.navigationItem.leftBarButtonItem = leftBarBtn;
  
    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
    right.frame = CGRectMake(kWidth - 20, 0, 20, 20);
@@ -325,6 +319,9 @@
 - (void)selectCityBtn:(UIBarButtonItem *)barButton{
     SeletCityViewController *o = [[SeletCityViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:o];
+    o.delegate = self;
+    o.city = self.leftBtn.titleLabel.text;
+
     [self presentViewController:nav animated:YES completion:nil];
     
 }

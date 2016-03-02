@@ -20,6 +20,20 @@
     UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
     self.navigationItem.leftBarButtonItem = leftBtn;
 }
+
+- (void)showRightButtonWithTitle:(NSString *)Title{
+    UIButton *right = [UIButton buttonWithType:UIButtonTypeCustom];
+    right.frame = CGRectMake(kWidth - 20, 0, 20, 20);
+//    [right setImage:[UIImage imageNamed:@"btn_search.png"] forState:UIControlStateNormal];
+    [right setTitle:Title forState:UIControlStateNormal];
+//    [right addTarget:self action:@selector(seacherActityBtn:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithCustomView:right];
+    self.navigationItem.rightBarButtonItem = rightBtn;
+    
+    
+}
+
+
 //导航按钮
 - (void)backButtonAction:(UIButton *)btn{
     [self.navigationController popViewControllerAnimated:YES];

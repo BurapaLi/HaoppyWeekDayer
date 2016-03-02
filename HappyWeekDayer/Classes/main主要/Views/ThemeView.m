@@ -30,7 +30,7 @@
 - (void)configView{
     [self addSubview:self.mainScrollView];
     [self.IndexScrollView addSubview:self.headImageView];
-    
+
 }
 
 - (UIScrollView *)mainScrollView{

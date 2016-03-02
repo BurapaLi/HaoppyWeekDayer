@@ -49,6 +49,18 @@
     if (![CLLocationManager locationServicesEnabled]) {
         NSLog(@"定位服务当前可能尚未打开，请设置打开！");
     }
+    // 判断是否是iOS8
+    if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0){
+        NSLog(@"是iOS8");
+        // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
+        [_locationManager requestAlwaysAuthorization]; // 请求前台和后台定位权限
+        //[self.mgr requestWhenInUseAuthorization];// 请求前台定位权限
+    }else{
+        NSLog(@"是iOS7");
+        // 3.开始监听(开始获取位置)
+        [_locationManager startUpdatingLocation];
+    }
+
     //如果没有授权则请求用户授权
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
@@ -112,6 +124,11 @@
     CLLocation *location = [locations firstObject];
     //获取坐标
     CLLocationCoordinate2D coordinate = location.coordinate;
+    
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setValue:[NSNumber numberWithDouble:coordinate.latitude] forKey:@"lat"];
+    [userDefault setValue:[NSNumber numberWithDouble:coordinate.longitude] forKey:@"lng"];
+    
     //汉字多了之后就不提示
     NSLog(@"经度：%f  维度：%f 海拔：%f 航向：%f行走速度：%f", coordinate.longitude, coordinate.latitude, location.altitude,location.course,location.speed);
     

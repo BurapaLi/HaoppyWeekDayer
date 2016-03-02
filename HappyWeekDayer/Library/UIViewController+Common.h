@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Common)
-- (void)showBackButtonWithImage:(NSString *)imageName;;
+- (void)showBackButtonWithImage:(NSString *)imageName;
+- (void)showRightButtonWithTitle:(NSString *)Title;
 @end

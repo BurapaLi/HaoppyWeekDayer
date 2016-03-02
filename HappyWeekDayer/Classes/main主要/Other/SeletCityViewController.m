@@ -9,17 +9,25 @@
 #import "SeletCityViewController.h"
 #import "HeadCollectionReusableView.h"
 #import "FootCollectionReusableView.h"
+#import <CoreLocation/CoreLocation.h>
 
 static NSString *itemIdentifier = @"itemIdentifier";
 static NSString *headIdentifier = @"headIdentifier";
 //static NSString *footIdentifier = @"footIdentifier";
 
-@interface SeletCityViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface SeletCityViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,CLLocationManagerDelegate>
+{
+    CLLocationManager *_locationManager;
+    CLGeocoder *_geocoder;
+}
 /** collectionView */
 @property (nonatomic, retain) UICollectionView *collectionView;
 /** 城市cat_name */
 @property (nonatomic, retain) NSMutableArray *cityListArray;
-
+/** 城市cat_id */
+@property (nonatomic, retain) NSMutableArray *cityIdArray;
+/** <#draw#> */
+@property (nonatomic, strong) HeadCollectionReusableView *headView;
 
 @end
 
@@ -31,13 +39,26 @@ static NSString *headIdentifier = @"headIdentifier";
     }
     return _cityListArray;
 }
+- (NSMutableArray *)cityIdArray
+{
+    if (!_cityIdArray) {
+        self.cityIdArray = [[NSMutableArray alloc] init];
+    }
+    return _cityIdArray;
+}
+
+- (NSMutableArray *)getCity:(void (^)(NSMutableArray *))city{
+    
+    return self.cityListArray;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"切换城市";
     self.tabBarController.tabBar.backgroundColor = [UIColor darkGrayColor];
     [self.view addSubview:self.collectionView];
     [self showBackButtonWithImage:@"camera_cancel_up"];
-
     [self requestModel];
 }
 - (void)backButtonAction:(UIButton *)btn{
@@ -68,9 +89,9 @@ static NSString *headIdentifier = @"headIdentifier";
         NSArray *cat_name = successdic[@"list"];
         for (NSDictionary *dict in cat_name) {
             [self.cityListArray addObject:dict[@"cat_name"]];
+            [self.cityIdArray addObject:dict[@"cat_id"]];
         }
     }
-    
     
 }
 - (UICollectionView *)collectionView
@@ -110,33 +131,38 @@ static NSString *headIdentifier = @"headIdentifier";
     
     return self.cityListArray.count;
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.delegate getcityName:self.cityListArray[indexPath.row] cityId:nil];
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:itemIdentifier forIndexPath:indexPath];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = self.cityListArray[indexPath.row];
-    titleLabel.backgroundColor = [UIColor grayColor];
+    titleLabel.backgroundColor = [UIColor colorWithRed:0.818 green:0.784 blue:0.224 alpha:1.000];
     [cell addSubview:titleLabel];
     
     return cell;
     
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *headView = nil;
-//    if (kind == UICollectionElementKindSectionHeader) {
-        headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headIdentifier forIndexPath:indexPath];
-    
-    
-        return headView;
-//    }
+    UICollectionReusableView *resultView = nil;
+    if (kind == UICollectionElementKindSectionHeader) {
+        self.headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headIdentifier forIndexPath:indexPath];
+        self.headView.cityName = self.city;
+        fSLog(@"%@",self.headView.cityName);
+        resultView = self.headView;
+        
+        
+    }
+    return resultView;
 //    FootCollectionReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"cellfooter" forIndexPath:indexPath];
 //    return footView;
     
 }
-
-
 
 
 @end

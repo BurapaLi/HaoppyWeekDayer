@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadCollectionReusableView : UICollectionReusableView
-
+@property (weak, nonatomic) IBOutlet UIButton *locationBtn;
+/** 当前定位城市 */
+@property (nonatomic, copy) NSString *cityName;
 @end

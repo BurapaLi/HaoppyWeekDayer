@@ -18,7 +18,7 @@
 
 @end
 @implementation HeadCollectionReusableView
-- (IBAction)btn:(id)sender {
+- (IBAction)bn:(id)sender {
     //定位城市标签
     self.cityName = kUDDS(city);
     //重新定位

@@ -38,12 +38,13 @@
     [self showBackButtonWithImage:@"back"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.segmentedControl];
+    _pagecount = 1;
     [self getFourRequest];
 }
 
 - (void)segmentCtrlValuechange: (VOSegmentedControl *)segmentCtrl{
     self.classifyType = segmentCtrl.selectedSegmentIndex + 1;
-    [self showPreviousSelectButton];
+    [self getFourRequest];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

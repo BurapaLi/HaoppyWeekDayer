@@ -26,8 +26,6 @@ static NSString *headIdentifier = @"headIdentifier";
 @property (nonatomic, retain) NSMutableArray *cityListArray;
 /** 城市cat_id */
 @property (nonatomic, retain) NSMutableArray *cityIdArray;
-/** <#draw#> */
-@property (nonatomic, strong) HeadCollectionReusableView *headView;
 
 @end
 
@@ -149,20 +147,59 @@ static NSString *headIdentifier = @"headIdentifier";
     
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *resultView = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
-        self.headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headIdentifier forIndexPath:indexPath];
-        self.headView.cityName = self.city;
-        fSLog(@"%@",self.headView.cityName);
-        resultView = self.headView;
-        
-        
-    }
-    return resultView;
+//    if (kind == UICollectionElementKindSectionHeader) {
+        HeadCollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headIdentifier forIndexPath:indexPath];
+        //定位城市标签
+        NSString *city = [[NSUserDefaults standardUserDefaults] valueForKey:@"city"];
+        headView.changLabel.text = [city substringToIndex:city.length - 1];
+        //重新定位
+        [headView.locationBtn addTarget:self action:@selector(reLocationAction:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+    return headView;
 //    FootCollectionReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"cellfooter" forIndexPath:indexPath];
 //    return footView;
     
 }
+- (void)reLocationAction:(UIButton *)btn {
+    [ProgressHUD show:@"定位中..."];
+    _locationManager = [[CLLocationManager alloc] init];
+    //设置代理
+    _locationManager.delegate = self;
+    //定位精度
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    //多少米定位一次
+    CLLocationDistance distance = 10.0;
+    _locationManager.distanceFilter = distance;
+    //开始定位
+    [_locationManager startUpdatingLocation];
+    
+    _geocoder = [[CLGeocoder alloc] init];
+}
+
+#pragma mark ------  LocationDelegate
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    //从数组中取出一个定位的信息
+    CLLocation *location = [locations lastObject];
+    //从CLLoction中取出坐标
+    //CLLocationCoordinate2D 坐标系，里边包含经度和纬度
+    CLLocationCoordinate2D coordinate = location.coordinate;
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault setValue:[NSNumber numberWithDouble:coordinate.latitude] forKey:@"lat"];
+    [userDefault setValue:[NSNumber numberWithDouble:coordinate.longitude] forKey:@"lng"];
+    
+    [_geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        CLPlacemark *placeMark = [placemarks firstObject];
+        [[NSUserDefaults standardUserDefaults] setValue:placeMark.addressDictionary[@"City"] forKey:@"city"];
+        //保存
+        [userDefault synchronize];
+        [ProgressHUD showSuccess:@"定位成功"];
+        [self.collectionView reloadData];
+    }];
+    //如果不需要使用定位服务的时候，及时关闭定位服务
+    [_locationManager stopUpdatingLocation];
+}
+
 
 
 @end

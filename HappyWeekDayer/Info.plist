@@ -70,7 +70,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationWhenInUseDescription</key>
-	<string>请求位置</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<true/>
 </dict>
 </plist>

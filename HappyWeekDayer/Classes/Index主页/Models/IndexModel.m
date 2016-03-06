@@ -20,6 +20,7 @@
     self = [super init];
     if (self) {
         self.type = dic[@"type"];
+        //如果是推荐活动
         if ([self.type integerValue] == RecommendTypeActivity) {
             self.address   = dic[@"address"];
             self.counts    = dic[@"counts"];
@@ -29,6 +30,7 @@
             self.price     = dic[@"price"];
             self.startTime = dic[@"startTime"];
         }else{
+            //如果是推荐专题
             self.activityDescription = dic[@"description"];
         }
         self.activityId = dic[@"id"];

@@ -133,16 +133,21 @@
     //查找GameScore表
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"MemberUser"];
     //查找GameScore表里面id为0c6db13c的数据
-    [bquery getObjectInBackgroundWithId:@"4188158b36" block:^(BmobObject *object,NSError *error){
+    [bquery getObjectInBackgroundWithId:@"6b908e5eb3" block:^(BmobObject *object,NSError *error){
         if (error){
             //进行错误处理
+            fSLog(@"%@",error);
         }else{
             //表里有id为0c6db13c的数据
             if (object) {
                 //得到playerName和cheatMode
                 NSString *playerName = [object objectForKey:@"user_Name"];
-                BOOL cheatMode = [object objectForKey:@"user_cellPhone"];
-                NSLog(@"%@----%i",playerName,cheatMode);
+                
+                NSString *url = [object objectForKey:@"url"];
+                fSLog(@"%@",url);
+                
+                NSString *cheatMode = [object objectForKey:@"user_cellPhone"];
+                fSLog(@"%@----%@",playerName,cheatMode);
             }
         }
     }];

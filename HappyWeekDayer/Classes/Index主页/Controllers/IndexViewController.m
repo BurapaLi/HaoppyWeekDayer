@@ -66,7 +66,6 @@
     if (_scrollView == nil) {
         self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 186)];
         self.scrollView.contentSize = CGSizeMake(self.adArray.count * kWidth, 186);
-        
         self.scrollView.delegate = self;
         //整屏滑动
         self.scrollView.pagingEnabled = YES;
@@ -207,6 +206,7 @@
 - (void)mainActivityButtonAction:(UIButton *)Btn{
     
     ClassFiyViewController *o = [[ClassFiyViewController alloc] init];
+    o.classifyType = Btn.tag - 100 + 1;
     [self.navigationController pushViewController:o animated:YES];
 }
 #pragma mark    //下边两个方框按钮方法

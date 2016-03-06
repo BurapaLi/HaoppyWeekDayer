@@ -10,6 +10,6 @@
 
 @interface HeadCollectionReusableView : UICollectionReusableView
 @property (weak, nonatomic) IBOutlet UIButton *locationBtn;
-/** 当前定位城市 */
-@property (nonatomic, copy) NSString *cityName;
+@property (weak, nonatomic) IBOutlet UILabel *changLabel;
+
 @end

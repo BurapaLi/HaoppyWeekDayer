@@ -7,9 +7,6 @@
 //
 
 #import "TabBarViewController.h"
-//#import "IndexViewController.h"
-//#import "FindViewController.h"
-//#import "OwerViewController.h"
 
 @interface TabBarViewController ()
 

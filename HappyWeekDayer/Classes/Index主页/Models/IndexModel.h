@@ -18,10 +18,7 @@ typedef enum {
 
 
 @interface IndexModel : NSObject
-/** 首页大图 */
-@property (nonatomic, copy) NSString *image_big;
-/** 标题 */
-@property (nonatomic, copy) NSString *title;
+#pragma mark    //acData
 /** 价格 */
 @property (nonatomic, copy) NSString *price;
 /** 经度 */
@@ -35,6 +32,11 @@ typedef enum {
 @property (nonatomic, copy  ) NSString *endTime;
 @property (nonatomic, copy  ) NSString *activityId;
 @property (nonatomic, copy  ) NSString *type;
+#pragma mark    //rcData
+/** 首页大图 */
+@property (nonatomic, copy) NSString *image_big;
+/** 标题 */
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy  ) NSString *activityDescription;
 
 //+ (instancetype)indexModelWithDictory:(NSDictionary *)dict;

@@ -17,6 +17,7 @@
 #import "goodViewController.h"
 #import "hotViewController.h"
 #import "HWTitleButton.h"
+#import "HeadScrollView.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,SeletCityViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,55 +60,37 @@
 - (void)getcityName:(NSString *)cityName cityId:(NSString *)cityId{
     [self.leftBtn setTitle:cityName forState:UIControlStateNormal];
     self.cityId = cityId;
+    [self requestModel];
     
 }
-#pragma mark    //滚图
-- (UIScrollView *)scrollView{
-    if (_scrollView == nil) {
-        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 186)];
-        self.scrollView.contentSize = CGSizeMake(self.adArray.count * kWidth, 186);
-        self.scrollView.delegate = self;
-        //整屏滑动
-        self.scrollView.pagingEnabled = YES;
-        //水平//滚动条showsVerticalScrollIndicator
-        self.scrollView.showsHorizontalScrollIndicator = NO;
-    }
-    return _scrollView;
-}
 
-#pragma mark    //page
-- (UIPageControl *)pageControl{
-    if (_pageControl == nil) {
-        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 186 - 30, kWidth, 30)];
-        self.pageControl.pageIndicatorTintColor = [UIColor blackColor];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor cyanColor];
-    }
-    return _pageControl;
-}
 - (void)configTableViewHeaderView{
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kWidth, 343)];
     self.tableView.tableHeaderView = headerView;
-    //滚图
-    for (int i = 0; i < self.adArray.count; i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kWidth * i, 0, kWidth, 186)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:self.adArray[i][@"url"]] placeholderImage:nil];
-        imageView.userInteractionEnabled = YES;
-        [self.scrollView addSubview:imageView];
-        UIButton *touchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        touchBtn.frame = imageView.frame;
-        touchBtn.tag = 100 + i;
-        [touchBtn addTarget:self action:@selector(touchAdvertiseMent:) forControlEvents:UIControlEventTouchUpInside];
-        [self.scrollView addSubview:touchBtn];
-        
-    }
-    [headerView addSubview:self.scrollView];
-    //page
-    self.pageControl.numberOfPages = self.adArray.count;
-    [headerView addSubview:self.pageControl];
+#pragma mark    //轮播图
+    HeadScrollView *headScrollView = [[HeadScrollView alloc] initWithFrame:headerView.frame andbannerList:self.adArray];
+    headScrollView.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * self.adArray.count, SCREEN_HEIGHT * 0.2);
+    [headScrollView.touchBtn addTarget:self action:@selector(touchAdvertiseMent:) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:headScrollView.scrollView];
+    headScrollView.pageControl.numberOfPages = 5;
+    [headerView addSubview:headScrollView.pageControl];
+  
     //4+2
-    [self chidren:headerView];
-    //时间控制器
-    [self timerTo];
+    //按钮
+    for (int i = 0; i < 4; i++) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(i * kWidth / 4 + 10, 196, kWidth / 4 * 2 / 3, 157 / 2 - 10);
+        NSString *imageStr = [NSString stringWithFormat:@"home_icon_%d", i + 1];
+        [btn setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
+        btn.tag = 100 + i;
+        [btn addTarget:self action:@selector(mainActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [headerView addSubview:btn];
+    }
+    //精选活动
+    [headerView addSubview:self.activityBtn];
+    //热门专题
+    [headerView addSubview:self.themeBtn];
+ 
 
 }
 #pragma mark    //滚图按钮
@@ -127,55 +110,6 @@
         themeVC.themeid = self.adArray[adButton.tag - 100][@"id"];
         [self.navigationController pushViewController:themeVC animated:YES];
     }
-}
-
-- (void)timerTo{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(scrollViewAction) userInfo:nil repeats:YES];
-}
-- (void)scrollViewAction{
-//    fSLog(@"%lu",self.adArray.count);
-    NSInteger i = self.pageControl.currentPage;
-    if (i == self.adArray.count - 1) {
-        i = -1;
-    }
-    i++;
-    CGPoint offset = self.scrollView.contentOffset;
-    offset.x = i * kWidth;
-    [self.scrollView setContentOffset:offset animated:YES];
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    self.pageControl.currentPage = self.scrollView.contentOffset.x / kWidth;
-}
-//当用户拖拽scrollView的时候，移除定时器
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self.timer invalidate], self.timer = nil;
-}
-//当用户停止拖拽时，添加定时器
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    [self timerTo];
-}
-//切换视图时，移除定时器
-- (void)viewWillDisappear:(BOOL)animated{
-    [self.timer invalidate], self.timer = nil;
-}
-
-#pragma mark    //四个方框 == 下边两个方框
-- (void)chidren:(UIView *)headerView{
-    //按钮
-    for (int i = 0; i < 4; i++) {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(i * kWidth / 4 + 10, 196, kWidth / 4 * 2 / 3, 157 / 2 - 10);
-        NSString *imageStr = [NSString stringWithFormat:@"home_icon_%d", i + 1];
-        [btn setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
-        btn.tag = 100 + i;
-        [btn addTarget:self action:@selector(mainActivityButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [headerView addSubview:btn];
-    }
-    //精选活动
-    [headerView addSubview:self.activityBtn];
-    //热门专题
-    [headerView addSubview:self.themeBtn];
 }
 
 #pragma mark    //精选活动

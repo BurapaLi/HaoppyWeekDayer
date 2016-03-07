@@ -130,7 +130,7 @@ static NSString *headIdentifier = @"headIdentifier";
     return self.cityListArray.count;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self.delegate getcityName:self.cityListArray[indexPath.row] cityId:nil];
+    [self.delegate getcityName:self.cityListArray[indexPath.row] cityId:self.cityListArray[indexPath.row]];
     
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -150,7 +150,8 @@ static NSString *headIdentifier = @"headIdentifier";
 //    if (kind == UICollectionElementKindSectionHeader) {
         HeadCollectionReusableView *headView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headIdentifier forIndexPath:indexPath];
         //定位城市标签
-        NSString *city = [[NSUserDefaults standardUserDefaults] valueForKey:@"city"];
+    NSString *city = [[NSUserDefaults standardUserDefaults] valueForKey:@"city"];
+//    headView.changLabel.text = city;
         headView.changLabel.text = [city substringToIndex:city.length - 1];
         //重新定位
         [headView.locationBtn addTarget:self action:@selector(reLocationAction:) forControlEvents:UIControlEventTouchUpInside];

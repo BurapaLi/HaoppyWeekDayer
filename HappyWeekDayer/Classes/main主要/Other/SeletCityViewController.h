@@ -18,6 +18,6 @@
 @property (nonatomic, assign)  id <SeletCityViewControllerDelegate>delegate;
 /** 城市 */
 @property (nonatomic, copy) NSString *city;
-- (NSMutableArray *)getCity:(void(^)(NSMutableArray *city))city;
+//- (NSMutableArray *)getCity:(void(^)(NSMutableArray *city))city;
 
 @end

@@ -40,6 +40,7 @@
 		7A2EB2491C7799DF00985F5D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2EB2061C7799DF00985F5D /* libWeChatSDK.a */; };
 		7A2EB24A1C7799DF00985F5D /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB2071C7799DF00985F5D /* read_me.txt */; };
 		7A41D6541C462BF100F7EF3E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A41D6531C462BF100F7EF3E /* MessageUI.framework */; };
+		7A4D47111C8D0687008F5202 /* HeadScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A4D47101C8D0687008F5202 /* HeadScrollView.m */; };
 		7A8DECF91C85332D0063B278 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1AC1C7799DF00985F5D /* IndexViewController.m */; };
 		7A8DECFA1C85332D0063B278 /* IndexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1AF1C7799DF00985F5D /* IndexModel.m */; };
 		7A8DECFB1C85332D0063B278 /* IndexTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1B31C7799DF00985F5D /* IndexTableViewCell.m */; };
@@ -190,6 +191,8 @@
 		7A2EB2161C7799DF00985F5D /* VOSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VOSegmentedControl.h; sourceTree = "<group>"; };
 		7A2EB2171C7799DF00985F5D /* VOSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VOSegmentedControl.m; sourceTree = "<group>"; };
 		7A41D6531C462BF100F7EF3E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7A4D470F1C8D0687008F5202 /* HeadScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadScrollView.h; sourceTree = "<group>"; };
+		7A4D47101C8D0687008F5202 /* HeadScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadScrollView.m; sourceTree = "<group>"; };
 		7A8DED1A1C853F7C0063B278 /* HWTitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWTitleButton.h; sourceTree = "<group>"; };
 		7A8DED1B1C853F7C0063B278 /* HWTitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWTitleButton.m; sourceTree = "<group>"; };
 		7A8DED1D1C85406A0063B278 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
@@ -414,6 +417,8 @@
 				7A2EB1B21C7799DF00985F5D /* IndexTableViewCell.h */,
 				7A2EB1B31C7799DF00985F5D /* IndexTableViewCell.m */,
 				7A2EB1B41C7799DF00985F5D /* IndexTableViewCell.xib */,
+				7A4D470F1C8D0687008F5202 /* HeadScrollView.h */,
+				7A4D47101C8D0687008F5202 /* HeadScrollView.m */,
 				7A8DED1A1C853F7C0063B278 /* HWTitleButton.h */,
 				7A8DED1B1C853F7C0063B278 /* HWTitleButton.m */,
 			);
@@ -829,6 +834,7 @@
 				7AB037A71C86F60C00AA17AE /* ShareViewController.m in Sources */,
 				7A8DED171C8533540063B278 /* VOSegmentedControl.m in Sources */,
 				7ADDD56E1C871AD7003E7174 /* TabBarViewController.m in Sources */,
+				7A4D47111C8D0687008F5202 /* HeadScrollView.m in Sources */,
 				7AB037A11C86F2D300AA17AE /* LoginViewController.m in Sources */,
 				7A8DED181C8533540063B278 /* AppDelegate.m in Sources */,
 				7A8DED191C8533540063B278 /* main.m in Sources */,

@@ -31,7 +31,6 @@
 		7A2EB2261C7799DF00985F5D /* IndexTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1B41C7799DF00985F5D /* IndexTableViewCell.xib */; };
 		7A2EB2341C7799DF00985F5D /* GoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D31C7799DF00985F5D /* GoodTableViewCell.xib */; };
 		7A2EB2361C7799DF00985F5D /* HotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D61C7799DF00985F5D /* HotTableViewCell.xib */; };
-		7A2EB23B1C7799DF00985F5D /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1DD1C7799DF00985F5D /* ShareView.xib */; };
 		7A2EB23E1C7799DF00985F5D /* Ower.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1E61C7799DF00985F5D /* Ower.storyboard */; };
 		7A2EB23F1C7799DF00985F5D /* Bmob_iOS_SDK更新历史.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7A2EB1E91C7799DF00985F5D /* Bmob_iOS_SDK更新历史.txt */; };
 		7A2EB2401C7799DF00985F5D /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2EB1EA1C7799DF00985F5D /* BmobSDK.framework */; };
@@ -55,7 +54,6 @@
 		7A8DED091C85332D0063B278 /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D01C7799DF00985F5D /* ActivityView.m */; };
 		7A8DED0A1C85332D0063B278 /* GoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D21C7799DF00985F5D /* GoodTableViewCell.m */; };
 		7A8DED0B1C8533540063B278 /* HotTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1D51C7799DF00985F5D /* HotTableViewCell.m */; };
-		7A8DED0D1C8533540063B278 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1DC1C7799DF00985F5D /* ShareView.m */; };
 		7A8DED0E1C8533540063B278 /* ThemeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1DF1C7799DF00985F5D /* ThemeView.m */; };
 		7A8DED0F1C8533540063B278 /* DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB1EC1C7799DF00985F5D /* DateTools.m */; };
 		7A8DED101C8533540063B278 /* UIView+EstensionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A2EB20C1C7799DF00985F5D /* UIView+EstensionView.m */; };
@@ -78,7 +76,8 @@
 		7AB037A11C86F2D300AA17AE /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB0379E1C86F2D300AA17AE /* LoginViewController.m */; };
 		7AB037A21C86F2D300AA17AE /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB037A01C86F2D300AA17AE /* RegisterViewController.m */; };
 		7AB037A41C86F31400AA17AE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7AB037A31C86F31400AA17AE /* Login.storyboard */; };
-		7AB037A71C86F60C00AA17AE /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB037A61C86F60C00AA17AE /* ShareViewController.m */; };
+		7AB1337E1C9C1D1C002B0F94 /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB1337D1C9C1D1C002B0F94 /* ShareView.xib */; };
+		7AB133811C9C1D3C002B0F94 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB133801C9C1D3C002B0F94 /* ShareView.m */; };
 		7AD7D1391C77A2570055CD71 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD7D12D1C77A2570055CD71 /* libWeiboSDK.a */; };
 		7AD7D13A1C77A2570055CD71 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7AD7D1361C77A2570055CD71 /* WeiboSDK.bundle */; };
 		7ADD42821C3A1C0A007A577C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7ADD42811C3A1C0A007A577C /* Assets.xcassets */; };
@@ -155,9 +154,6 @@
 		7A2EB1D41C7799DF00985F5D /* HotTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotTableViewCell.h; sourceTree = "<group>"; };
 		7A2EB1D51C7799DF00985F5D /* HotTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotTableViewCell.m; sourceTree = "<group>"; };
 		7A2EB1D61C7799DF00985F5D /* HotTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HotTableViewCell.xib; sourceTree = "<group>"; };
-		7A2EB1DB1C7799DF00985F5D /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
-		7A2EB1DC1C7799DF00985F5D /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
-		7A2EB1DD1C7799DF00985F5D /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
 		7A2EB1DE1C7799DF00985F5D /* ThemeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeView.h; sourceTree = "<group>"; };
 		7A2EB1DF1C7799DF00985F5D /* ThemeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeView.m; sourceTree = "<group>"; };
 		7A2EB1E21C7799DF00985F5D /* OwerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OwerViewController.h; sourceTree = "<group>"; };
@@ -211,8 +207,9 @@
 		7AB0379F1C86F2D300AA17AE /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		7AB037A01C86F2D300AA17AE /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		7AB037A31C86F31400AA17AE /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
-		7AB037A51C86F60C00AA17AE /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		7AB037A61C86F60C00AA17AE /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		7AB1337D1C9C1D1C002B0F94 /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
+		7AB1337F1C9C1D3C002B0F94 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		7AB133801C9C1D3C002B0F94 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		7AD7D12D1C77A2570055CD71 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		7AD7D12E1C77A2570055CD71 /* WBHttpRequest+WeiboGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboGame.h"; sourceTree = "<group>"; };
 		7AD7D12F1C77A2570055CD71 /* WBHttpRequest+WeiboShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WBHttpRequest+WeiboShare.h"; sourceTree = "<group>"; };
@@ -473,9 +470,6 @@
 				7A2EB1D41C7799DF00985F5D /* HotTableViewCell.h */,
 				7A2EB1D51C7799DF00985F5D /* HotTableViewCell.m */,
 				7A2EB1D61C7799DF00985F5D /* HotTableViewCell.xib */,
-				7A2EB1DB1C7799DF00985F5D /* ShareView.h */,
-				7A2EB1DC1C7799DF00985F5D /* ShareView.m */,
-				7A2EB1DD1C7799DF00985F5D /* ShareView.xib */,
 				7A2EB1DE1C7799DF00985F5D /* ThemeView.h */,
 				7A2EB1DF1C7799DF00985F5D /* ThemeView.m */,
 				7AB0378C1C86851800AA17AE /* HeadCollectionReusableView.h */,
@@ -506,8 +500,8 @@
 				7AB0379E1C86F2D300AA17AE /* LoginViewController.m */,
 				7AB0379F1C86F2D300AA17AE /* RegisterViewController.h */,
 				7AB037A01C86F2D300AA17AE /* RegisterViewController.m */,
-				7AB037A51C86F60C00AA17AE /* ShareViewController.h */,
-				7AB037A61C86F60C00AA17AE /* ShareViewController.m */,
+				7AB1337F1C9C1D3C002B0F94 /* ShareView.h */,
+				7AB133801C9C1D3C002B0F94 /* ShareView.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -523,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				7A2EB1E61C7799DF00985F5D /* Ower.storyboard */,
+				7AB1337D1C9C1D1C002B0F94 /* ShareView.xib */,
 				7AB037A31C86F31400AA17AE /* Login.storyboard */,
 			);
 			path = Views;
@@ -712,6 +707,7 @@
 				TargetAttributes = {
 					7ADD42771C3A1C09007A577C = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = JJL237F75C;
 					};
 				};
 			};
@@ -741,7 +737,6 @@
 				7A2EB2211C7799DF00985F5D /* FindView.storyboard in Resources */,
 				7A2EB23E1C7799DF00985F5D /* Ower.storyboard in Resources */,
 				7A2EB23F1C7799DF00985F5D /* Bmob_iOS_SDK更新历史.txt in Resources */,
-				7A2EB23B1C7799DF00985F5D /* ShareView.xib in Resources */,
 				7A2EB2261C7799DF00985F5D /* IndexTableViewCell.xib in Resources */,
 				7AAAA1931C79FEFC002E05F3 /* ProgressHUD.bundle in Resources */,
 				7ADD42821C3A1C0A007A577C /* Assets.xcassets in Resources */,
@@ -753,6 +748,7 @@
 				7A2EB2441C7799DF00985F5D /* blueArrow.png in Resources */,
 				7A2EB24A1C7799DF00985F5D /* read_me.txt in Resources */,
 				7AB037901C86851800AA17AE /* HeadCollectionReusableView.xib in Resources */,
+				7AB1337E1C9C1D1C002B0F94 /* ShareView.xib in Resources */,
 				7A1857EE1C85508700D98CA0 /* ImageTableViewCell.xib in Resources */,
 				7A2EB2361C7799DF00985F5D /* HotTableViewCell.xib in Resources */,
 				7AD7D13A1C77A2570055CD71 /* WeiboSDK.bundle in Resources */,
@@ -817,8 +813,8 @@
 				7A8DED0B1C8533540063B278 /* HotTableViewCell.m in Sources */,
 				7AB0378F1C86851800AA17AE /* HeadCollectionReusableView.m in Sources */,
 				7A1857FC1C85657900D98CA0 /* SearchViewController.m in Sources */,
-				7A8DED0D1C8533540063B278 /* ShareView.m in Sources */,
 				7A8DED0E1C8533540063B278 /* ThemeView.m in Sources */,
+				7AB133811C9C1D3C002B0F94 /* ShareView.m in Sources */,
 				7A8DED0F1C8533540063B278 /* DateTools.m in Sources */,
 				7A8DED101C8533540063B278 /* UIView+EstensionView.m in Sources */,
 				7A8DED111C8533540063B278 /* UIViewController+Common.m in Sources */,
@@ -831,7 +827,6 @@
 				7A8DED161C8533540063B278 /* VOSegment.m in Sources */,
 				7A1857F11C85541600D98CA0 /* DiscoverModel.m in Sources */,
 				7A1858051C857F8700D98CA0 /* UIBarButtonItem+Extension.m in Sources */,
-				7AB037A71C86F60C00AA17AE /* ShareViewController.m in Sources */,
 				7A8DED171C8533540063B278 /* VOSegmentedControl.m in Sources */,
 				7ADDD56E1C871AD7003E7174 /* TabBarViewController.m in Sources */,
 				7A4D47111C8D0687008F5202 /* HeadScrollView.m in Sources */,
@@ -983,7 +978,7 @@
 					"$(PROJECT_DIR)/HappyWeekDayer/Library/libWeiboSDK",
 					"$(PROJECT_DIR)/HappyWeekDayer/Library/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Burapa.HappyWeekDayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Burapa.HappyWeekDayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1017,7 +1012,7 @@
 					"$(PROJECT_DIR)/HappyWeekDayer/Library/libWeiboSDK",
 					"$(PROJECT_DIR)/HappyWeekDayer/Library/SDK1.6.2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Burapa.HappyWeekDayer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Burapa.HappyWeekDayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

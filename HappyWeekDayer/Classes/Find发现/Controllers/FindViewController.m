@@ -17,20 +17,6 @@
 @end
 
 @implementation FindViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-    
-//    self.tableView.transform = CGAffineTransformMakeRotation(- M_PI_2);
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    [self.view addSubview:self.tableView];
-    
-    [self loadData];
-}
-
 - (UITableView *)tableView
 {
     if (!_tableView) {
@@ -46,6 +32,18 @@
         self.likeArray = [NSMutableArray new];
     }
     return _likeArray;
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+//    self.tableView.transform = CGAffineTransformMakeRotation(- M_PI_2);
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"ImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:self.tableView];
+    
+    [self loadData];
 }
 - (void)loadData {
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];

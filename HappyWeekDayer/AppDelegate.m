@@ -42,45 +42,52 @@
     //bomb
     [Bmob registerWithAppKey:kbmobAppKey];
     
+    //定位
+    [self location];
+    
+    self.window.rootViewController = [TabBarViewController new];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    return YES;
+}
+- (void)location{
     //初始化
     _locationManager = [[CLLocationManager alloc] init];
     _geocoder = [[CLGeocoder alloc] init];
     if (![CLLocationManager locationServicesEnabled]) {
         fSLog(@"定位服务当前可能尚未打开，请设置打开！");
     }
-    // 判断是否是iOS8
-//    if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0){
-////        NSLog(@"是iOS8以上");
-//        // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
-//        [_locationManager requestAlwaysAuthorization]; // 请求前台和后台定位权限
-//        //[self.mgr requestWhenInUseAuthorization];// 请求前台定位权限
-//    }else{
-//        NSLog(@"是iOS7");
-//        // 3.开始监听(开始获取位置)
-//        [_locationManager startUpdatingLocation];
-//    }
-
+    /*
+     
+     //判断是否是iOS8
+     if([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0){
+     //        NSLog(@"是iOS8以上");
+     // 主动要求用户对我们的程序授权, 授权状态改变就会通知代理
+     [_locationManager requestAlwaysAuthorization]; // 请求前台和后台定位权限
+     //[self.mgr requestWhenInUseAuthorization];// 请求前台定位权限
+     }else{
+     NSLog(@"是iOS7");
+     // 3.开始监听(开始获取位置)
+     [_locationManager startUpdatingLocation];
+     }
+     */
+    
     //如果没有授权则请求用户授权
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         [_locationManager requestWhenInUseAuthorization];
     }
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-    //设置代理
-    _locationManager.delegate = self;
-    //设置定位精度,精度越高越耗电
-    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-    //定位频率，每隔多少米定位一次
-    CLLocationDistance distance = 10.0;
-    _locationManager.distanceFilter = distance;
-    //启动跟踪定位
-    [_locationManager startUpdatingLocation];
+        //设置代理
+        _locationManager.delegate = self;
+        //设置定位精度,精度越高越耗电
+        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        //定位频率，每隔多少米定位一次
+        CLLocationDistance distance = 10.0;
+        _locationManager.distanceFilter = distance;
+        //启动跟踪定位
+        [_locationManager startUpdatingLocation];
+    }
 }
-    self.window.rootViewController = [TabBarViewController new];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
-}
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
     //取出第一个位置
     CLLocation *location = [locations lastObject];

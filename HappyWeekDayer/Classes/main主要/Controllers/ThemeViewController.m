@@ -40,29 +40,21 @@
     [sessionManager GET:[NSString stringWithFormat:@"%@&id=%@", kActicityTheme, self.themeid] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self make:responseObject];
-        
+        NSDictionary *dic = responseObject;
+        NSString *status = dic[@"status"];
+        NSInteger code = [dic[@"code"] integerValue];
+        if ([status isEqualToString:@"success"] && code == 0) {
+            
+            self.themeView.dataDic = dic[@"success"];
+            
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         fSLog(@"%@", error);
     }];
     
     
 }
-- (void)make:(NSDictionary *)responseObject{
-//    NSLog(@"%@",responseObject);
-    NSDictionary *dic = responseObject;
-    NSString *status = dic[@"status"];
-    NSInteger code = [dic[@"code"] integerValue];
-    if ([status isEqualToString:@"success"] && code == 0) {
-        
-        self.themeView.dataDic = dic[@"success"];
 
-    }else{
-        
-    }
-
-    
-}
 
 @end
 

@@ -54,7 +54,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"IndexTableViewCell"bundle:nil] forCellReuseIdentifier:@"cell"];
     [self button];
     [self requestModel];
-    [self configTableViewHeaderView];
     
     }
 - (void)getcityName:(NSString *)cityName cityId:(NSString *)cityId{
@@ -70,7 +69,11 @@
 #pragma mark    //轮播图
     HeadScrollView *headScrollView = [[HeadScrollView alloc] initWithFrame:headerView.frame andbannerList:self.adArray];
     headScrollView.scrollView.contentSize = CGSizeMake(SCREEN_WIDTH * self.adArray.count, SCREEN_HEIGHT * 0.2);
-    [headScrollView.touchBtn addTarget:self action:@selector(touchAdvertiseMent:) forControlEvents:UIControlEventTouchUpInside];
+    for (int i = 100; i < 105; i++) {
+        UIButton *btnbn = [self.view viewWithTag:i];
+        btnbn.tag = i;
+        [btnbn addTarget:self action:@selector(touchAdvertiseMent:) forControlEvents:UIControlEventTouchUpInside];
+    }
     [headerView addSubview:headScrollView.scrollView];
     headScrollView.pageControl.numberOfPages = 5;
     [headerView addSubview:headScrollView.pageControl];
@@ -170,6 +173,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self make:responseObject];
         
+        [self configTableViewHeaderView];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         fSLog(@"%@",error);
     }];

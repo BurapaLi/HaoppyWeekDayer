@@ -17,13 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-iX-IWk">
-                                <rect key="frame" x="53" y="686" width="60" height="30"/>
-                                <state key="normal" title="添加数据"/>
-                                <connections>
-                                    <action selector="AddData:" destination="tc1-cd-XK8" eventType="touchUpInside" id="GGk-W1-WxC"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0U5-ha-eiH">
                                 <rect key="frame" x="121" y="686" width="60" height="30"/>
                                 <state key="normal" title="查询数据"/>
@@ -45,10 +38,17 @@
                                     <action selector="deledeData:" destination="tc1-cd-XK8" eventType="touchUpInside" id="aUf-n4-R0j"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入用户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DX8-x6-z8d">
-                                <rect key="frame" x="0.0" y="72" width="414" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVH-iX-IWk">
+                                <rect key="frame" x="53" y="686" width="60" height="30"/>
+                                <state key="normal" title="添加数据"/>
+                                <connections>
+                                    <action selector="AddData:" destination="tc1-cd-XK8" eventType="touchUpInside" id="GGk-W1-WxC"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jCM-Ae-Hqc">
+                                <rect key="frame" x="0.0" y="78" width="414" height="30"/>
                                 <attributedString key="attributedText"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aUM-NA-2S4">
                                 <rect key="frame" x="0.0" y="110" width="414" height="30"/>
@@ -78,7 +78,7 @@
                     <navigationItem key="navigationItem" id="bm7-BM-nst">
                         <barButtonItem key="rightBarButtonItem" title="注册" id="kVh-hb-AFx">
                             <connections>
-                                <segue destination="aXQ-ur-L80" kind="push" id="F8C-iN-2hM"/>
+                                <segue destination="aXQ-ur-L80" kind="show" id="9DE-QM-a5g"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -88,8 +88,10 @@
                         <outlet property="ModeifyData" destination="U1h-qR-ukB" id="8u5-UR-4PC"/>
                         <outlet property="QueryData" destination="0U5-ha-eiH" id="OlG-vE-sJM"/>
                         <outlet property="deledeData" destination="hNg-sa-Fz1" id="Hhf-Tp-Ndw"/>
-                        <outlet property="passWord" destination="aUM-NA-2S4" id="lcu-iv-s0q"/>
-                        <outlet property="userName" destination="DX8-x6-z8d" id="RSH-ay-nBI"/>
+                        <outlet property="passWord" destination="aUM-NA-2S4" id="2Eb-h9-wgE"/>
+                        <outlet property="userName" destination="jCM-Ae-Hqc" id="BuC-oy-g07"/>
+                        <outlet property="userNameTF" destination="jCM-Ae-Hqc" id="Nlv-II-6c6"/>
+                        <outlet property="userpassName" destination="aUM-NA-2S4" id="cPE-Ly-XkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="agl-yk-QIm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,7 +182,7 @@
         <!--Navigation Controller-->
         <scene sceneID="iKb-h0-rc6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="atm-A2-tCL" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsWhenKeyboardAppears="YES" id="atm-A2-tCL" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dqb-3Y-gdT">

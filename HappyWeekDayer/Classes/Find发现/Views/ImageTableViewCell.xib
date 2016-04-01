@@ -14,8 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cDR-rE-7iJ">
-                        <rect key="frame" x="4" y="-6" width="55" height="55"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cDR-rE-7iJ">
+                        <rect key="frame" x="0.0" y="0.0" width="44" height="43"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="44" id="klr-5R-7xE"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="大四上大家按时打卡上大家按时打卡上就打谁看得见我且其" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Trg-rp-lw2">
                         <rect key="frame" x="73" y="1" width="243" height="42"/>
@@ -24,6 +27,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="cDR-rE-7iJ" secondAttribute="bottom" id="9kB-ec-jxA"/>
+                    <constraint firstItem="cDR-rE-7iJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="C8w-4z-KOT"/>
+                    <constraint firstItem="cDR-rE-7iJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wME-Is-BjW"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="headImageView" destination="cDR-rE-7iJ" id="TXd-GX-lgj"/>

@@ -1,7 +1,6 @@
 //滚动图
 
 #import "HeadScrollView.h"
-#import "Index.h"
 @interface HeadScrollView()<UIScrollViewDelegate>
 @property(nonatomic, retain) NSTimer *timer;
 
@@ -9,7 +8,8 @@
 @implementation HeadScrollView
 
 - (instancetype)initWithFrame:(CGRect)frame andbannerList:(NSMutableArray *)bannerList{
-    if ([super initWithFrame:frame ]) {
+    self = [super initWithFrame:frame];
+    if (self) {
         self.bannerList = bannerList;
         [self loadingCustomView];
     }

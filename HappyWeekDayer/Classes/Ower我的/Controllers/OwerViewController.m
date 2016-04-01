@@ -28,14 +28,11 @@
 @implementation OwerViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //每次当页面要出现的事后重新计算图片缓存大小
-    //计算图片缓存
     SDImageCache *cache = [SDImageCache sharedImageCache];
     NSInteger cacheSize = [cache getSize];
     NSString *cacheStr = [NSString stringWithFormat:@"清除图片缓存(%.02fM)", (double)cacheSize / 1024 / 1024];
     [self.titleArray replaceObjectAtIndex:0 withObject:cacheStr];
-    NSIndexPath *indexPath
-    = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -68,39 +65,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellidentifier];
     }
-    /*
-     
-     NSString *title;
-     switch (indexPath.row) {
-     case 0:
-     title = @"清除缓存";
-     break;
-     case 1:
-     title = @"用户反馈";
-     break;
-     case 2:
-     title = @"当前版本1.0";
-     [self performSelector:@selector(checkAppVersion) withObject:nil afterDelay:2.0];
-     break;
-     case 3:
-     title = @"给我评分";
-     break;
-     case 4:
-     title = @"分享给朋友";
-     break;
-     
-     default:
-     
-     break;
-     }
-     */
+   
     cell.textLabel.text = self.titleArray[indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
-    
-    
-    
+   
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
@@ -131,7 +101,7 @@
         {
             //appStore评分
             NSString *str = [NSString stringWithFormat:
-                             @"itms-apps://itunes.apple.com/app"];
+                             @"itms-apps://itunes.apple.com/1091500740.app"];
             
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }
@@ -208,13 +178,22 @@
                          @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
     //    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
     [WeiboSDK sendRequest:request];
-
-
-    
 }
+- (WBMessageObject *)messageToShare{
+    WBMessageObject *message = [WBMessageObject message];
+    message.text = @"#分享#";
+    
+    return message;
+}
+/*
+ [4] 如果你的程序要发消息给微信，那么需要调用WXApi的sendReq函数：
+ -(BOOL) sendReq:(BaseReq*)req
+ 其中req参数为SendMessageToWXReq类型。
+ 需要注意的是，SendMessageToWXReq的scene成员，如果scene填WXSceneSession，那么消息会发送至微信的会话内。如果scene填WXSceneTimeline，那么消息会发送至朋友圈。如果scene填WXSceneFavorite,那么消息会发送到“我的收藏”中。scene默认值为WXSceneSession。
+ */
 - (void)friengShare{
     SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.text = @"人文的东西并不是体现在你看得到的方面，它更多的体现在你看不到的那些方面，它会影响每一个功能，这才是最本质的。但是，对这点可能很多人没有思考过，以为人文的东西就是我们搞一个很小清新的图片什么的。”综合来看，人文的东西其实是贯穿整个产品的脉络，或者说是它的灵魂所在。";
+    req.text = @"#分享#";
     req.bText = YES;
     req.scene = WXSceneSession;
     [WXApi sendReq:req];
@@ -222,32 +201,30 @@
 }
 - (void)circleShare{
     SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.text = @"人文的东西并不是体现在你看得到的方面，它更多的体现在你看不到的那些方面，它会影响每一个功能，这才是最本质的。但是，对这点可能很多人没有思考过，以为人文的东西就是我们搞一个很小清新的图片什么的。”综合来看，人文的东西其实是贯穿整个产品的脉络，或者说是它的灵魂所在。";
+    req.text = @"#分享#";
     req.bText = YES;
-    req.scene = WXSceneTimeline;
+    req.scene = WXSceneFavorite;
     [WXApi sendReq:req];
     
 }
-- (WBMessageObject *)messageToShare{
-    WBMessageObject *message = [WBMessageObject message];
-    message.text = @"人文的东西并不是体现在你看得到的方面，它更多的体现在你看不到的那些方面，它会影响每一个功能，这才是最本质的。但是，对这点可能很多人没有思考过，以为人文的东西就是我们搞一个很小清新的图片什么的。”综合来看，人文的东西其实是贯穿整个产品的脉络，或者说是它的灵魂所在。";
-    
-    return message;
-}
-//- (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
-//    
-//    
-//    
-//}
-//-(void)onReq:(BaseReq*)req
-//
-//
-//}
-//
-//-(void) onResp:(BaseResp*)resp{
-//    
-//    
-//}
+/*
+ 
+ - (void)didReceiveWeiboResponse:(WBBaseResponse *)response{
+ 
+ 
+ 
+ }
+ //微信
+ -(void)onReq:(BaseReq*)req
+ 
+ 
+ }
+ 
+ -(void) onResp:(BaseResp*)resp{
+ 
+ 
+ }
+ */
 - (void)removeShare{
     [UIView animateWithDuration:1.0 animations:^{
         
@@ -304,7 +281,6 @@
 - (NSMutableArray *)titleArray
 {
     if (!_titleArray) {
-        self.titleArray = [[NSMutableArray alloc] init];
         self.titleArray = [NSMutableArray arrayWithObjects:@"清除缓存",  @"用户反馈", @"当前版本1.0", @"给我评分", @"分享给朋友", nil];
     }
     return _titleArray;

@@ -14,9 +14,6 @@
 #import "goodViewController.h"
 
 @interface ClassFiyViewController ()<UITableViewDelegate,UITableViewDataSource,PullingRefreshTableViewDelegate>
-{
-    NSInteger _pagecount;
-}
 @property (nonatomic, strong) PullingRefreshTableView *tableView;
 @property (nonatomic, assign) BOOL refreshing;
 @property (nonatomic, strong) NSMutableArray *showDataArray;//展示数据
@@ -38,14 +35,9 @@
     [self showBackButtonWithImage:@"back"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GoodTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.segmentedControl];
-    _pagecount = 1;
     [self getFourRequest];
 }
 
-- (void)segmentCtrlValuechange: (VOSegmentedControl *)segmentCtrl{
-    self.classifyType = segmentCtrl.selectedSegmentIndex + 1;
-    [self getFourRequest];
-}
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     [ProgressHUD dismiss];
@@ -59,54 +51,18 @@
     cell.goodModel = self.showDataArray[indexPath.row];
     return cell;
 }
-#pragma mark ------------  UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"123" bundle:nil];
     AcitivyViewController *activityVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"ActivityDetailVC"];
     //活动id
-    goodViewController *model = self.showDataArray[indexPath.row];
-    activityVC.activityId = model.themeid;
+    GoodModel *model = self.showDataArray[indexPath.row];
+    activityVC.activityId = model.ID;
     activityVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:activityVC animated:YES];
 }
 
-
-#pragma mark ------------  PullingRefreshTableViewDelegate
-//tableView下拉刷新开始的时候调用
-- (void)pullingTableViewDidStartRefreshing:(PullingRefreshTableView *)tableView {
-    _pagecount = 1;
-    self.refreshing = YES;
-    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
-}
-
-//tableView上拉刷新开始的时候调用
-- (void)pullingTableViewDidStartLoading:(PullingRefreshTableView *)tableView {
-    _pagecount += 1;
-    self.refreshing = NO;
-    [self performSelector:@selector(getFourRequest) withObject:nil afterDelay:1.0];
-}
-
-//刷新完成时间
-- (NSDate *)pullingTableViewRefreshingFinishedDate{
-    return [DateTools getSystemNowDate];
-}
-
-//手指开始拖动方法
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.tableView tableViewDidScroll:scrollView];
-}
-
-//手指结束拖动方法
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    [self.tableView tableViewDidEndDragging:scrollView];
-}
-
 - (void)showPreviousSelectButton{
-    if (self.refreshing) { //下拉删除原来的数据
-        if (self.showDataArray.count > 0) {
-            [self.showDataArray removeAllObjects];
-        }
-    }
     switch (self.classifyType) {
         case ClassifyTypeShowRepertorie:{
             self.showDataArray = self.showArray;
@@ -165,15 +121,28 @@
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //演出剧目typeid=6
-    [ProgressHUD show:@"网络拼命加载中..."];
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(6)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self make1:responseObject];
-        
-        //////
+        //        fSLog(@"%@",responseObject);
+        NSDictionary *resultDic = responseObject;
+        NSString *ststus = resultDic[@"status"];
+        NSInteger code = [resultDic[@"code"] integerValue];
+        if ([ststus isEqualToString:@"success"] && code == 0) {
+            NSDictionary *dic = resultDic[@"success"];
+            NSArray *acDataArray = dic[@"acData"];
+            for (NSDictionary *dic in acDataArray) {
+                GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
+                [self.showArray addObject:model];
+            }
+            //根据上一页选择的按钮，确定显示第几页数据
+            [self showPreviousSelectButton];
+            //刷新tableView,他会重新执行tableView的所有代理方法
+            [self.tableView reloadData];
+        }
+ 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //////
+         
         fSLog(@"%@", error);
     }];
     
@@ -186,11 +155,27 @@
     [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(23)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self make2:responseObject];
+        NSDictionary *resultDic = responseObject;
+        NSString *ststus = resultDic[@"status"];
+        NSInteger code = [resultDic[@"code"] integerValue];
         
-        //////
+        if ([ststus isEqualToString:@"success"] && code == 0) {
+            NSDictionary *dic = resultDic[@"success"];
+            NSArray *acDataArray = dic[@"acData"];
+            for (NSDictionary *dic in acDataArray) {
+                GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
+                [self.touristArray addObject:model];
+            }
+            
+            //根据上一页选择的按钮，确定显示第几页数据
+            [self showPreviousSelectButton];
+            //刷新tableView,他会重新执行tableView的所有代理方法
+            [self.tableView reloadData];
+        }
+        
+         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //////
+         
         fSLog(@"%@", error);
     }];
     
@@ -199,14 +184,30 @@
 - (void)makeStudy{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //= 学习益智22
-    [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(22)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    //= 学习益智21
+    [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(21)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self make3:responseObject];
-        //////
+        NSDictionary *resultDic = responseObject;
+        NSString *ststus = resultDic[@"status"];
+        NSInteger code = [resultDic[@"code"] integerValue];
+        
+        if ([ststus isEqualToString:@"success"] && code == 0) {
+            NSDictionary *dic = resultDic[@"success"];
+            NSArray *acDataArray = dic[@"acData"];
+            for (NSDictionary *dic in acDataArray) {
+                GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
+                [self.studentArray addObject:model];
+            }
+            
+            //根据上一页选择的按钮，确定显示第几页数据
+            [self showPreviousSelectButton];
+            //刷新tableView,他会重新执行tableView的所有代理方法
+            [self.tableView reloadData];
+        }
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        //////
+         
         fSLog(@"%@", error);
     }];
     
@@ -215,87 +216,34 @@
 - (void)makeFamily{
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //= 21
-    [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(21)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
+    //= 22
+    [sessionManager GET:[NSString stringWithFormat:@"%@&page=%@&typeid=%@", kclass , @(1),@(22)] parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [self make4:responseObject];
+        NSDictionary *resultDic = responseObject;
+        NSString *ststus = resultDic[@"status"];
+        NSInteger code = [resultDic[@"code"] integerValue];
+        
+        if ([ststus isEqualToString:@"success"] && code == 0) {
+            NSDictionary *dic = resultDic[@"success"];
+            NSArray *acDataArray = dic[@"acData"];
+            for (NSDictionary *dic in acDataArray) {
+                GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
+                [self.familyArray addObject:model];
+            }
+            
+            //根据上一页选择的按钮，确定显示第几页数据
+            [self showPreviousSelectButton];
+            //刷新tableView,他会重新执行tableView的所有代理方法
+            [self.tableView reloadData];
+            
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [ProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
     }];
     
     
-}
-- (void)make1:(NSDictionary *)responseObject{
-    NSDictionary *resultDic = responseObject;
-    NSString *ststus = resultDic[@"status"];
-    NSInteger code = [resultDic[@"code"] integerValue];
-    if ([ststus isEqualToString:@"success"] && code == 0) {
-        NSDictionary *dic = resultDic[@"success"];
-        NSArray *acDataArray = dic[@"acData"];
-        for (NSDictionary *dic in acDataArray) {
-            GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
-            [self.showArray addObject:model];
-        }
-        //刷新tableView,他会重新执行tableView的所有代理方法
-        [self.tableView reloadData];
-        
-    }
-}
-- (void)make2:(NSDictionary *)responseObject{
-    NSDictionary *resultDic = responseObject;
-    NSString *ststus = resultDic[@"status"];
-    NSInteger code = [resultDic[@"code"] integerValue];
-    
-    if ([ststus isEqualToString:@"success"] && code == 0) {
-        NSDictionary *dic = resultDic[@"success"];
-        NSArray *acDataArray = dic[@"acData"];
-        for (NSDictionary *dic in acDataArray) {
-            GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
-            [self.touristArray addObject:model];
-        }
-        
-        //根据上一页选择的按钮，确定显示第几页数据
-        [self showPreviousSelectButton];
-    }
-}
-- (void)make3:(NSDictionary *)responseObject{
-    NSDictionary *resultDic = responseObject;
-    NSString *ststus = resultDic[@"status"];
-    NSInteger code = [resultDic[@"code"] integerValue];
-    
-    if ([ststus isEqualToString:@"success"] && code == 0) {
-        NSDictionary *dic = resultDic[@"success"];
-        NSArray *acDataArray = dic[@"acData"];
-        for (NSDictionary *dic in acDataArray) {
-            GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
-            [self.studentArray addObject:model];
-        }
-        
-        //根据上一页选择的按钮，确定显示第几页数据
-        [self showPreviousSelectButton];
-        
-    }
-    
-}
-- (void)make4:(NSDictionary *)responseObject{
-    NSDictionary *resultDic = responseObject;
-    NSString *ststus = resultDic[@"status"];
-    NSInteger code = [resultDic[@"code"] integerValue];
-    
-    if ([ststus isEqualToString:@"success"] && code == 0) {
-        NSDictionary *dic = resultDic[@"success"];
-        NSArray *acDataArray = dic[@"acData"];
-        for (NSDictionary *dic in acDataArray) {
-            GoodModel *model = [[GoodModel alloc] initWithDicticionary:dic];
-            [self.familyArray addObject:model];
-        }
-        
-        //根据上一页选择的按钮，确定显示第几页数据
-        [self showPreviousSelectButton];
-        
-    }
 }
 
 
@@ -315,13 +263,17 @@
         self.segmentedControl.frame = CGRectMake(0, 64, kWidth, 40);
         self.segmentedControl.indicatorThickness = 4;
         self.segmentedControl.tag = self.classifyType - 1;
+        //返回点击的是哪个按钮
         [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
         }];
         [self.segmentedControl addTarget:self action:@selector(segmentCtrlValuechange:) forControlEvents:UIControlEventValueChanged];
     }
     return _segmentedControl;
 }
-
+- (void)segmentCtrlValuechange: (VOSegmentedControl *)segmentCtrl{
+    self.classifyType = segmentCtrl.selectedSegmentIndex + 1;
+    [self getFourRequest];
+}
 - (PullingRefreshTableView *)tableView
 {
     if (!_tableView) {
